@@ -9,14 +9,18 @@
     <body id="al_body">
             
         <header>
-        
+            <?php
+            require("header.php");
+            ?>
         </header>
         <main id="al_main">
             <h1 id="al_h1"> Dernier articles mis en ligne</h1>
             <div class="rectangle"></div>
         </main>
         <footer>
-
+            <?php 
+            require("footer.php");
+            ?>
         </footer>
     </body>
 </html>

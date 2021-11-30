@@ -1,5 +1,6 @@
 /* HEADER  */
-#lr_body{
+
+*{
     padding: 0;
     margin: 0;
 }
@@ -60,7 +61,7 @@
     background-attachment: fixed; 
     background-size:cover;
     background-color: rgb(255, 0, 0);
-    opacity: 90%;
+    opacity: 80%;
 }
 .rectangle{
 	width: 70%;
