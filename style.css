@@ -6,7 +6,36 @@
 
 /* INDEX */
 
-
+#al_body{
+    background-image: url(../blog/medias/floryn.jpg);
+    background-attachment: fixed; 
+    background-size:cover;
+    background-color: rgb(255, 0, 0);
+    opacity: 90%;
+}
+.rectangle{
+	width: 70%;
+	height:1000px;
+	background:rgb(0, 0, 0);
+    opacity: 50%;
+    display: flex;
+    z-index: -5;
+    margin-top: 8%;
+    margin-left: 15%;
+}
+::-webkit-scrollbar{
+    width: 0px;
+    height: 0px;
+}
+#al_h1{
+    color: aliceblue;
+    display: flex;
+    padding-left: 35%;
+    padding-top: 2%;
+    position: absolute;
+    font-size: 300%;
+    z-index: 100;
+}
 
 
 
@@ -65,35 +94,3 @@ footer{
 
 
 /* CREER ARTICLES  */
-
-
-
-
-
-
-
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> master
