@@ -94,7 +94,46 @@ footer{
 
 
 /* INSCRIPTION */
-
+.lr_h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+#color_link{
+    color: rgb(0, 195, 255);
+}
+    #deplacement_form{
+        display: flex;
+        justify-content: center;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        
+    }
+    #form_inscription{
+        background-color: rgb(37, 37, 37);
+        padding: 3%;
+        border-radius: 5%;
+        font-size: 150%;
+        text-align: center;
+    }
+    .box-input{
+        padding: 1%;
+        margin: 5px;
+        font-size: 70%;
+    }
+    .box_button{
+        background-color: rgb(77, 77, 77);
+        border-radius: 20%;
+        font-size: 120%;
+        padding: 1%;
+    }
+    .color_link{
+        color: rgb(230, 138, 0);
+    }
+    #message_form{
+        text-align: center;
+        background-color: aqua;
+    }
+    
 
 
 
