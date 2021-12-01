@@ -9,7 +9,6 @@
     background-color: rgb(24, 24, 24);
     background-size: cover;
     background-attachment: fixed;
-    /* padding: 2em;  */
 }
 .lr_nav_header{
         color: rgb(206, 206, 206);
@@ -17,21 +16,12 @@
 
 #lr_logo{
     background-color: rgb(24, 24, 24);
-    /* background-image: url(../blog/medias/logo_blog.png); */
-    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
     display: flex;
 
     justify-content: center;
-        /* font-size: 270%; */
-
-            /* padding-top: 1%;
-            padding-bottom: 1%;
-            margin: 0; */
 }
 
 .lr_ul_header{
-    /* background-color: blueviolet; */
-        
     display: flex;
     flex-direction: row;
     justify-content:space-around;
@@ -46,7 +36,6 @@
 }
 
 .lr_li_header{
-    /* background-color: rgb(148, 148, 148); */
     text-decoration: none; 
     color: rgb(206, 206, 206);
 }
@@ -105,7 +94,46 @@ footer{
 
 
 /* INSCRIPTION */
-
+.lr_h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+#color_link{
+    color: rgb(0, 195, 255);
+}
+    #deplacement_form{
+        display: flex;
+        justify-content: center;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        
+    }
+    #form_inscription{
+        background-color: rgb(37, 37, 37);
+        padding: 3%;
+        border-radius: 5%;
+        font-size: 150%;
+        text-align: center;
+    }
+    .box-input{
+        padding: 1%;
+        margin: 5px;
+        font-size: 70%;
+    }
+    .box_button{
+        background-color: rgb(77, 77, 77);
+        border-radius: 20%;
+        font-size: 120%;
+        padding: 1%;
+    }
+    .color_link{
+        color: rgb(230, 138, 0);
+    }
+    #message_form{
+        text-align: center;
+        background-color: aqua;
+    }
+    
 
 
 
