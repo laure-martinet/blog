@@ -11,12 +11,12 @@
     <div class="footerbox">
         <div class="boutonsfooter">
             <input class="btn btn-secondary btn-lg" type="button" href="index.php" value="Accueil">
-            <input class="btn btn-secondary btn-lg" href="connexion.php" value="Connexion">
-            <input class="btn btn-secondary btn-lg" href="inscription.php" value="Inscription">
-            <input class="btn btn-secondary btn-lg" href="profil.php" value="Profil">
-            <input class="btn btn-secondary btn-lg" href="articles.php" value="Ensemble articles">
-            <input class="btn btn-secondary btn-lg" href="creer-article.php" value="Crée article">
-            <input class="btn btn-secondary btn-lg" href="article.php" value="Voir articles et com">
+            <input class="btn btn-secondary btn-lg" type="button" href="connexion.php" value="Connexion">
+            <input class="btn btn-secondary btn-lg" type="button" href="inscription.php" value="Inscription">
+            <input class="btn btn-secondary btn-lg" type="button" href="profil.php" value="Profil">
+            <input class="btn btn-secondary btn-lg" type="button" href="articles.php" value="Ensemble articles">
+            <input class="btn btn-secondary btn-lg" type="button" href="creer-article.php" value="Crée article">
+            <input class="btn btn-secondary btn-lg" type="button" href="article.php" value="Voir articles et com">
         </div>
     </div>
     <div id="imagegithub">
