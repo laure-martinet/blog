@@ -9,7 +9,6 @@
     background-color: rgb(24, 24, 24);
     background-size: cover;
     background-attachment: fixed;
-    /* padding: 2em;  */
 }
 .lr_nav_header{
         color: rgb(206, 206, 206);
@@ -17,21 +16,12 @@
 
 #lr_logo{
     background-color: rgb(24, 24, 24);
-    /* background-image: url(../blog/medias/logo_blog.png); */
-    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
     display: flex;
 
     justify-content: center;
-        /* font-size: 270%; */
-
-            /* padding-top: 1%;
-            padding-bottom: 1%;
-            margin: 0; */
 }
 
 .lr_ul_header{
-    /* background-color: blueviolet; */
-        
     display: flex;
     flex-direction: row;
     justify-content:space-around;
@@ -46,7 +36,6 @@
 }
 
 .lr_li_header{
-    /* background-color: rgb(148, 148, 148); */
     text-decoration: none; 
     color: rgb(206, 206, 206);
 }
