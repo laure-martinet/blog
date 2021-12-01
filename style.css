@@ -91,13 +91,13 @@
 
 /* FOOTER  */
 footer{
-    background-color: black;
+    background-color: rgb(12, 11, 11);
 }
 #imagegithub{
     margin-left: 90%;
 }
-.boutonsfooter{
-
+.btn{
+    color: salmon;
 }
 
 
