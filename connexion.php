@@ -64,7 +64,7 @@ if(isset($_POST['formconnexion']))
                     echo '<font color="red">'.$erreur.'</font>'; 
                     }
                 ?>
-                <h1 class="lr_h2">Connexion</h1><br>
+                <h1 id="lr_h2">Connexion</h1>
                 <input type="text" class="box-input" name="loginconnect" placeholder="Login"><br>
                 <input type="password" class="box-input" name="passwordconnect" placeholder="Password"><br><br>
                 <input type="submit" class="btn btn-secondary btn-lg" name="formconnexion" value="Se connecter !"><br><br>
