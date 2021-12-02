@@ -74,13 +74,13 @@ if(isset($_SESSION['id']) && $_SESSION['id'] > 0){
             echo '<font color="red">'.$msg.'</font><br /><br />'; 
             }
             ?>
-            <h2 id="h1_inscription">Modifier mes informations</h1><br>
+            <h2 class="lr_h2">Modifier mes informations</h1><br>
                 <input type="text" class="box-input" name="newlogin" placeholder="Login" required /><br>
                 <input type="text" class="box-input" name="newemail" placeholder="email" required /><br>
                 <input type="password" class="box-input" name="newmdp" placeholder="Mot de passe" required /><br>
                 <input type="password" class="box-input" name="newmdp2" placeholder="Confirmez votre mot de passe" required /><br><br>
-                <input type="submit" name="submit" value="Enregistrer mes informations" class="box_button" /><br>
-                <a href="deconnexion.php"><input class="box_button" type="button" value="Déconnexion"></a>
+                <input type="submit" name="submit" value="Enregistrer mes informations" class="btn btn-secondary btn-lg" /><br><br>
+                <a href="deconnexion.php"><input class="btn btn-secondary btn-lg" type="button" value="Déconnexion"></a>
             </form>
             </div>
         </main>
