@@ -11,12 +11,16 @@
         $login = $_SESSION['login'];
     ?>
     <nav class="lr_nav_header">
+    <div id="lr_logo">
+            <img src="../blog/medias/logo_blog.png">
+        </div> 
         <ul class="lr_ul_header">
             <?php 
             if($_SESSION['id_droits'] = 1337)
             if($_SESSION['id_droits'] == 1337){
             ?>
                 <li ><a class="lr_li_header" href="index.php">Accueil</a></li>
+                <li ><a class="lr_li_header" href="profil.php">Profil</a></li>
                 <li ><a class="lr_li_header" href="deconnexion.php">Déconnexion</a></li>
             <?php
             }
