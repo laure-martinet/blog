@@ -68,6 +68,7 @@ require ("header.php");
                 <input type="password" name="passwordconnect" placeholder="Password">
                 <br /><br />
                 <input type="submit" name="formconnexion" value="Se connecter !">
+                <a href="http://localhost/module-connexion/projet1/index.php"><input type="submit" name="retour" value="Retour à l'accueil"></a>
             </form>
         </div>
     <footer>
