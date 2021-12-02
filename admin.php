@@ -13,7 +13,7 @@ if(isset($_GET['type']) AND $_GET['type'] == 'utilisateurs') {
    
    if(isset($_GET['supprime']) AND !empty($_GET['supprime'])) {
       $supprime = (int) $_GET['supprime'];
-      $req = $bdd->prepare('DELETE FROM commentaires WHERE id = ?');
+      $req = $bdd->prepare('DELETE FROM articles WHERE id = ?');
       $req->execute(array($supprime));
    }
 
@@ -27,11 +27,14 @@ $membres = $bdd->query('SELECT * FROM utilisateurs ORDER BY id DESC LIMIT 0,5');
    <link rel="stylesheet" type="text/css" href="style.css">
    <title>Administration</title>
 </head>
+<body id="al_body">
 <header>
-    <h1>Administration</h1>
+    <?php
+include_once('header.php');
+?>
 </header>
-<body>
-  <div id="admin">
+<main id="al_main">
+  <div id="LMadmin">
     <ul>
         <?php while($m = $membres->fetch()) { ?>
         <li><?= $m['id'] ?> : <?= $m['login'] ?> - <a href="index.php?type=supprime=<?= $m['id'] ?>">Supprimer</a></li>
@@ -40,5 +43,11 @@ $membres = $bdd->query('SELECT * FROM utilisateurs ORDER BY id DESC LIMIT 0,5');
     <br /><br />
     <a href="deconnexion"><input type="button" value="Déconnexion"></a>
   </div>
+  </main>
+  <footer>
+      <?php
+      include_once('footer.php');
+      ?>
+  </footer>
 </body>
 </html>
