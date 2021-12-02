@@ -173,7 +173,15 @@ footer{
 
 
 /* ADMIN */
-
+#LMadmin{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    background-color: rgb(37, 37, 37);
+        padding: 3%;
+        border-radius: 5%;
+        font-size: 150%;
+        text-align: center;
+}
 
 
 
