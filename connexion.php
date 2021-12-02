@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
@@ -23,7 +22,6 @@ if(isset($_POST['formconnexion']))
                         $_SESSION['email'] = $result[0]['email'];
                         $_SESSION['id_droits'] = $result[0]['id_droits'];
                         header("Location: profil.php");
-
                         }
                     else 
                         {
@@ -44,43 +42,39 @@ if(isset($_POST['formconnexion']))
         }
 }
 ?>
-
 <html>
     <head>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <title>connexion</title>
+        <title>Connexion</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="style.css">
     </head>
 <body id="al_body">
     <header>
         <?php
-include_once ("header.php");
+            include_once ("header.php");
         ?>
     </header>
-    <div id="LMtitrediv">
-    <h1 id="titreLM">Connexion</h1>
-    </div>
-        <div id="connexion">
-            <form id="formLM" method="POST" action="">
-                <input type="text" name="loginconnect" placeholder="Login">
-                <input type="password" name="passwordconnect" placeholder="Password">
-                <br /><br />
-                <input type="submit" name="formconnexion" value="Se connecter !">
+    <main id="al_main"> 
+        <div id="deplacement_form"> 
+            <form id="form_inscription" method="POST" action=""> 
+                <?php 
+                    if(isset($erreur))
+                    {
+                    echo '<font color="red">'.$erreur.'</font>'; 
+                    }
+                ?>
+                <h1 id="lr_h2">Connexion</h1>
+                <input type="text" class="box-input" name="loginconnect" placeholder="Login"><br>
+                <input type="password" class="box-input" name="passwordconnect" placeholder="Password"><br>
+                <input type="submit" class="btn btn-secondary btn-lg" name="formconnexion" value="Se connecter !"><br>
             </form>
         </div>    
-    </div>
+    </main>
     <footer>
-<?php
-include_once ("footer.php");
-?>
-    </footer>
-    <?php 
-        if(isset($erreur))
-        {
-        echo '<font color="red">'.$erreur.'</font>'; 
-        }
+        <?php
+            include_once ("footer.php");
         ?>
-        </body>
+    </footer>
+</body>
 </html>
