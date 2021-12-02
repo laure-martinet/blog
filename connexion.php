@@ -40,7 +40,7 @@ if(isset($_POST['formconnexion']))
         }
     else
         {
-         $erreur = "Tous les champs doivent être remplis !";
+        $erreur = "Tous les champs doivent être remplis !";
         }
 }
 ?>
@@ -69,7 +69,8 @@ include_once ("header.php");
                 <br /><br />
                 <input type="submit" name="formconnexion" value="Se connecter !">
             </form>
-        </div>
+        </div>    
+    </div>
     <footer>
 <?php
 include_once ("footer.php");
