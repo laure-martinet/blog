@@ -24,18 +24,11 @@ if(isset($_SESSION['id']) && $_SESSION['id'] > 0){
         header('Location: profil.php');
         }
     }
-    if(isset($_POST['newnom']) && !empty($_POST['newnom']) && $_POST['newnom'] != $infoutilisateur['nom'])
+    if(isset($_POST['newemail']) && !empty($_POST['newemail']) && $_POST['newemail'] != $infoutilisateur['email'])
     {
-        $newnom = htmlspecialchars($_POST['newnom']);
-        $insertnom = $bdd->prepare("UPDATE utilisateurs SET nom = ? WHERE id = ?");
-        $insertnom->execute(array($newnom, $_SESSION['id']));
-        header('Location: profil.php');
-    }
-    if(isset($_POST['newprenom']) && !empty($_POST['newprenom']) && $_POST['newprenom'] != $infoutilisateur['prenom'])
-    {
-        $newprenom = htmlspecialchars($_POST['newprenom']);
-        $insertprenom = $bdd->prepare("UPDATE utilisateurs SET prenom = ? WHERE id = ?");
-        $insertprenom->execute(array($newprenom, $_SESSION['id']));
+        $newnom = htmlspecialchars($_POST['newemail']);
+        $insertnom = $bdd->prepare("UPDATE utilisateurs SET email = ? WHERE id = ?");
+        $insertnom->execute(array($newemail, $_SESSION['id']));
         header('Location: profil.php');
     }
     if(isset($_POST['newmdp']) && !empty($_POST['newmdp']) && isset($_POST['newmdp2']) && !empty($_POST['newmdp2'])) {
@@ -83,8 +76,7 @@ if(isset($_SESSION['id']) && $_SESSION['id'] > 0){
             ?>
             <h2 id="h1_inscription">Modifier mes informations</h1><br>
                 <input type="text" class="box-input" name="newlogin" placeholder="Login" required /><br>
-                <input type="text" class="box-input" name="newprenom" placeholder="prenom" required /><br>
-                <input type="text" class="box-input" name="newnom" placeholder="nom" required /><br>
+                <input type="text" class="box-input" name="newemail" placeholder="email" required /><br>
                 <input type="password" class="box-input" name="newmdp" placeholder="Mot de passe" required /><br>
                 <input type="password" class="box-input" name="newmdp2" placeholder="Confirmez votre mot de passe" required /><br><br>
                 <input type="submit" name="submit" value="Enregistrer mes informations" class="box_button" /><br>
