@@ -8,31 +8,35 @@
     <?php
     date_default_timezone_set('UTC');
     if (isset($_SESSION['login'])){
-        $login = $_SESSION['login'];
+        // $login = $_SESSION['login'];
     ?>
     <nav class="lr_nav_header">
+    <div id="lr_logo">
+            <img src="../blog/medias/logo_blog.png">
+        </div> 
         <ul class="lr_ul_header">
             <?php 
-            if($_SESSION['id_droits'] = 1337)
-            if($_SESSION['id_droits'] == 1337){
+            // if($_SESSION['id_droits'] = 1337)
+            if($_SESSION['id_droits'] == 1){
             ?>
                 <li ><a class="lr_li_header" href="index.php">Accueil</a></li>
+                <li ><a class="lr_li_header" href="profil.php">Profil</a></li>
                 <li ><a class="lr_li_header" href="deconnexion.php">Déconnexion</a></li>
             <?php
             }
-            else if ($_SESSION['id_droits'] = 42){
+            else if ($_SESSION['id_droits'] == 42){
             ?>
                 <li ><a class="lr_li_header" href="index.php">Accueil</a></li>
-                <li ><a class="lr_li_header" href="modo.php">modérateur</a>
+                <li ><a class="lr_li_header" href="profil.php">Profil</a></li>
+                <li ><a class="lr_li_header" href="creer-article.php">Créer Article</a>
                 <li ><a class="lr_li_header" href="deconnexion.php">Déconnexion</a></li>
             <?php
             }
-            else if ($_SESSION['id_droits'] = 1){
+            else if ($_SESSION['id_droits'] == 1337){
             ?>
-                <li ><a class="lr_li_header" href="index.php">Accueil</a></li>
-                <li ><a class="lr_li_header" href="allArticle.php">Article</a>
-                <li ><a class="lr_li_header" href="profil.php">Mon compte</a></li>
-                <li ><a class="lr_li_header" href="creer-article.php">Add article</a></li>
+                <li ><a class="lr_li_header" href="index.php">Accueil</a></li>         
+                <li ><a class="lr_li_header" href="creer-article.php">Créer Article</a></li>
+                <li ><a class="lr_li_header" href="admin.php">Administrateur</a></li>
                 <li ><a class="lr_li_header" href="deconnexion.php">Déconnexion</a></li>
             <?php
             }
