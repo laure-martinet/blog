@@ -1,6 +1,5 @@
 <?php
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', ''); 
-// $bdd = new PDO('mysql:host=localhost;dbname=laure-martinet_blog', 'Laure', 'Martinet');
 if (isset($_POST['submit'])){
             $erreur = "";  
             $login = htmlspecialchars($_POST['login']);
@@ -45,7 +44,7 @@ if (isset($_POST['submit'])){
     <body id="al_body">
         <header>     
             <?php
-                require('header.php');
+                include_once('header.php');
             ?>
         </header>
         <main id="al_main">
@@ -69,7 +68,7 @@ if (isset($_POST['submit'])){
         </main>
         <footer>
             <?php
-                require('footer.php');
+                include_once('footer.php');
             ?>
         </footer>
     </body>
