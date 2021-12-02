@@ -56,7 +56,7 @@ if(isset($_POST['formconnexion']))
 <body id="al_body">
     <header>
         <?php
-require ("header.php");
+include_once ("header.php");
         ?>
     </header>
     <div id="LMtitrediv">
@@ -68,12 +68,11 @@ require ("header.php");
                 <input type="password" name="passwordconnect" placeholder="Password">
                 <br /><br />
                 <input type="submit" name="formconnexion" value="Se connecter !">
-                <a href="http://localhost/module-connexion/projet1/index.php"><input type="submit" name="retour" value="Retour à l'accueil"></a>
             </form>
         </div>
     <footer>
 <?php
-require ("footer.php");
+include_once ("footer.php");
 ?>
     </footer>
     <?php 

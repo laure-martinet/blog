@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', ''); 
 if (isset($_POST['submit'])){
             $erreur = "";  
@@ -12,6 +14,7 @@ if (isset($_POST['submit'])){
             $requete=$bdd->prepare("SELECT * FROM utilisateurs WHERE login = ? "); 
             $requete->execute(array($login));
             $loginexist= $requete->rowCount();
+            ($requete);
 
             if ($loginlenght > 255)
             $erreur= "Votre pseudo ne doit pas depasser 255 caractères !";        
@@ -21,11 +24,11 @@ if (isset($_POST['submit'])){
                     $erreur = "Login déjà pris !";
             if($erreur == ""){
                 $hashage = password_hash($password, PASSWORD_BCRYPT);
-                $insertmbr= $bdd->prepare("INSERT INTO utilisateurs(login, email, password) VALUES(?, ?, ?)");
+                $insertmbr= $bdd->prepare("INSERT INTO  utilisateurs (login, email, password) VALUES(?, ?, ?)");
                 $insertmbr->execute(array($login, $email, $hashage));
                 $erreur = "Votre compte à bien été crée !";
 
-                var_dump($insertmbr);
+                var_dump($insertmbr->execute(array($login, $email, $hashage)));
             }
         }
             else{
