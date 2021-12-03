@@ -42,6 +42,7 @@ include_once('header.php');
     </ul>
     <br /><br />
     <a href="deconnexion"><input type="button" value="Déconnexion"></a>
+    <a href="creer-article.php"><input type="button" value="Crée article"></a>
   </div>
   </main>
   <footer>

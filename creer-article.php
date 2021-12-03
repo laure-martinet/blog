@@ -1,7 +1,6 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', ''); 
-$articles = $bdd->query('SELECT * FROM articles ORDER BY date DESC');
 
 if(isset($_POST['titrearticle'], $_POST['contenu'])) {
     if(!empty($_POST['titrearticle']) AND !empty($_POST['contenu'])) {
