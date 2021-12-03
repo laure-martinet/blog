@@ -8,7 +8,6 @@
     <?php
     date_default_timezone_set('UTC');
     if (isset($_SESSION['login'])){
-        // $login = $_SESSION['login'];
     ?>
     <nav class="lr_nav_header">
     <div id="lr_logo">
@@ -16,7 +15,6 @@
         </div> 
         <ul class="lr_ul_header">
             <?php 
-            // if($_SESSION['id_droits'] = 1337)
             if($_SESSION['id_droits'] == 1){
             ?>
                 <li ><a class="lr_li_header" href="index.php">Accueil</a></li> 
