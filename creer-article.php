@@ -37,7 +37,7 @@ else {
                     <input type="text" name="titrearticle" placehorder="Titre">
                     <textarea name="contenu" placehorder="Contenu de l'article">
                     </textarea>
-                <input type="submit" value="Envoyez">
+                <input type="submit" name="submit" value="Envoyez">
             </form>
             <?php if(isset($message)) { echo $message; } ?>
         </div>
