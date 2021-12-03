@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', ''); 
 if (isset($_POST['submit'])){
             $erreur = "";  
@@ -27,8 +25,6 @@ if (isset($_POST['submit'])){
                 $insertmbr= $bdd->prepare("INSERT INTO  utilisateurs (login, email, password) VALUES(?, ?, ?)");
                 $insertmbr->execute(array($login, $email, $hashage));
                 $erreur = "Votre compte à bien été crée !";
-
-                var_dump($insertmbr->execute(array($login, $email, $hashage)));
             }
         }
             else{
@@ -60,7 +56,7 @@ if (isset($_POST['submit'])){
                     ?></div>
                     <h1 class="lr_h2">S'inscrire</h1><br>
                         <input type="text" class="box-input" name="login" placeholder="Login" required /><br>
-                        <input type="text" class="box-input" name="email" placeholder="email" required /><br>
+                        <input type="email" class="box-input" name="email" placeholder="email" required /><br>
                         <input type="password" class="box-input" name="password" placeholder="Mot de passe" required /><br>
                         <input type="password" class="box-input" name="password2" placeholder="Confirmez votre mot de passe" required /> <br><br>
                         <input type="submit" name="submit" value="S'inscrire" class="btn btn-secondary btn-lg" /> <br><br>
