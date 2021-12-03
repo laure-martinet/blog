@@ -19,7 +19,15 @@
             // if($_SESSION['id_droits'] = 1337)
             if($_SESSION['id_droits'] == 1){
             ?>
-                <li ><a class="lr_li_header" href="index.php">Accueil</a></li>
+                <li ><a class="lr_li_header" href="index.php">Accueil</a></li> 
+                <div class="dropdown">
+                    <nav class="boutonmenuprincipal">Catégories</nav>
+                    <div class="dropdown-child">
+                    <a href="articles.php">Assassin's Creed</a>
+                    <a href="articles.php">World of Warcraft</a>
+                    <a href="articles.php">The Last of Us</a>
+                    </div>
+                </div>
                 <li ><a class="lr_li_header" href="profil.php">Profil</a></li>
                 <li ><a class="lr_li_header" href="deconnexion.php">Déconnexion</a></li>
             <?php
@@ -27,14 +35,29 @@
             else if ($_SESSION['id_droits'] == 42){
             ?>
                 <li ><a class="lr_li_header" href="index.php">Accueil</a></li>
-                <li ><a class="lr_li_header" href="profil.php">Profil</a></li>
+                <div class="dropdown">
+                    <nav class="boutonmenuprincipal">Catégories</nav>
+                    <div class="dropdown-child">
+                    <a href="articles.php">Assassin's Creed</a>
+                    <a href="articles.php">World of Warcraft</a>
+                    <a href="articles.php">The Last of Us</a>
+                    </div>
+                </div>                
                 <li ><a class="lr_li_header" href="creer-article.php">Créer Article</a>
                 <li ><a class="lr_li_header" href="deconnexion.php">Déconnexion</a></li>
             <?php
             }
             else if ($_SESSION['id_droits'] == 1337){
             ?>
-                <li ><a class="lr_li_header" href="index.php">Accueil</a></li>         
+                <li ><a class="lr_li_header" href="index.php">Accueil</a></li>     
+                <div class="dropdown">
+                    <nav class="boutonmenuprincipal">Catégories</nav>
+                    <div class="dropdown-child">
+                    <a href="articles.php">Assassin's Creed</a>
+                    <a href="articles.php">World of Warcraft</a>
+                    <a href="articles.php">The Last of Us</a>
+                    </div>
+                </div>    
                 <li ><a class="lr_li_header" href="creer-article.php">Créer Article</a></li>
                 <li ><a class="lr_li_header" href="admin.php">Administrateur</a></li>
                 <li ><a class="lr_li_header" href="deconnexion.php">Déconnexion</a></li>
@@ -53,6 +76,14 @@
         </div> 
         <ul class="lr_ul_header">
             <li ><a class="lr_li_header" href="index.php"> Accueil</a></li>
+            <div class="dropdown">
+                    <nav class="boutonmenuprincipal">Catégories</nav>
+                    <div class="dropdown-child">
+                    <a href="articles.php">Assassin's Creed</a>
+                    <a href="articles.php">World of Warcraft</a>
+                    <a href="articles.php">The Last of Us</a>
+                    </div>
+                </div>
             <li ><a class="lr_li_header" href="inscription.php"> Inscription</a></li>
             <li ><a class="lr_li_header" href="connexion.php"> Connexion</a></li> 
         </ul>

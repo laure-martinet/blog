@@ -40,6 +40,17 @@
     color: rgb(206, 206, 206);
 }
 
+/* menu deroulant */
+.dropdown-child {
+    display: none;
+    }
+    .dropdown-child a {
+    text-decoration: none;
+    display: block;
+    }
+    .dropdown:hover .dropdown-child {
+    display: block;
+    }
 
 
 
