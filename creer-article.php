@@ -6,9 +6,10 @@ if(isset($_POST['titrearticle'], $_POST['contenu'])) {
     if(!empty($_POST['titrearticle']) AND !empty($_POST['contenu'])) {
         $titrearticle = htmlspecialchars($_POST['titrearticle']);
         $contenu = htmlspecialchars($_POST['contenu']);
-        $ins = $bdd->prepare('INSERT INTO articles (article, date, id_utilisateur, id_categorie) VALUES (?, ?, ? NOW()');
+        $ins = $bdd->prepare('INSERT INTO articles (article, date) VALUES (?, ?, NOW()');
         $ins->execute(array($titrearticle, $contenu));
         $message = 'Votre article a bien été posté';
+        var_dump($ins->execute(array($titrearticle, $contenu)));
 }
 else {
     $message = "Veuillez remplir tout les champs !";
