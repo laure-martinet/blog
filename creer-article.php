@@ -21,7 +21,7 @@ if(isset($_POST['titrearticle']) && isset($_POST['contenu'])) {
                 ':id_user' => $id_user,
                 ':id_cat' => 0,
                 ':date' => date("m.d.y"),
-                ':table' => 0
+                
             ]);
 
             if($ins == true)
