@@ -14,8 +14,7 @@ if(isset($_POST['titrearticle']) && isset($_POST['contenu'])) {
             $id_user = $_SESSION['id'];
 
             // $ins = $bdd->prepare("INSERT INTO articles(titre, article, id_utilisateur, id_categorie, date, table) VALUES ('$titrearticle', '$contenu', $id_user, null, NOW(), null");
-            $ins = $bdd->prepare('INSERT INTO `articles`( `titre`, `article`, `id_utilisateur`, `id_categorie`, `date`, `table`) VALUES (:titre, :art, :id_user, :id_cat, :date, :table)');
-            var_dump($ins);
+            $ins = $bdd->prepare('INSERT INTO `articles`( `titre`, `article`, `id_utilisateur`, `id_categorie`, `date`) VALUES (:titre, :art, :id_user, :id_cat, :date)');
             $ins->execute([
                 ':titre' => $titrearticle,
                 ':art' => $contenu,
