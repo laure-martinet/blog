@@ -24,7 +24,7 @@ if (isset($_POST['submit'])){
                 $hashage = password_hash($password, PASSWORD_BCRYPT);
                 $insertmbr= $bdd->prepare("INSERT INTO  utilisateurs (login, email, password) VALUES(?, ?, ?)");
                 $insertmbr->execute(array($login, $email, $hashage));
-                $erreur = "Votre compte à bien été crée !";
+                $erreur = "Votre compte à bien été créer !";
             }
         }
             else{
