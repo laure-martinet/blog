@@ -1,15 +1,43 @@
 <?php
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', ''); 
+var_dump($_SESSION);
 
-if(isset($_POST['titrearticle'], $_POST['contenu'])) {
-    if(!empty($_POST['titrearticle']) AND !empty($_POST['contenu'])) {
-        $titrearticle = htmlspecialchars($_POST['titrearticle']);
-        $contenu = htmlspecialchars($_POST['contenu']);
-        $ins = $bdd->prepare("INSERT INTO articles (article, date) VALUES (?, ?, NOW()");
-        $ins->execute(array($titrearticle, $contenu));
-        $message = 'Votre article a bien été posté';
-        var_dump($ins->execute(array($titrearticle, $contenu)));
+if(isset($_POST['titrearticle']) && isset($_POST['contenu'])) {
+    if(!empty($_POST['titrearticle']) && !empty($_POST['contenu'])) {
+
+        $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', ''); 
+
+        if ($bdd == true)
+        {
+            $titrearticle = htmlspecialchars($_POST['titrearticle']);
+            $contenu = htmlspecialchars($_POST['contenu']);
+            $id_user = $_SESSION['id'];
+
+            // $ins = $bdd->prepare("INSERT INTO articles(titre, article, id_utilisateur, id_categorie, date, table) VALUES ('$titrearticle', '$contenu', $id_user, null, NOW(), null");
+            $ins = $bdd->prepare('INSERT INTO `articles`( `titre`, `article`, `id_utilisateur`, `id_categorie`, `date`, `table`) VALUES (:titre, :art, :id_user, :id_cat, :date, :table)');
+            var_dump($ins);
+            $ins->execute([
+                ':titre' => $titrearticle,
+                ':art' => $contenu,
+                ':id_user' => $id_user,
+                ':id_cat' => 0,
+                ':date' => date("m.d.y"),
+                ':table' => 0
+            ]);
+
+            if($ins == true)
+            {
+                $message = 'Votre article a bien été posté';
+            }
+            else
+            {
+                $message = 'erreur';
+            }
+        }
+        else
+        {
+            echo ('bdd pas ok');
+        }
 }
 else {
     $message = "Veuillez remplir tout les champs !";
