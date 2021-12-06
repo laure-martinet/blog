@@ -37,6 +37,11 @@ else {
                     <input type="text" name="titrearticle" placehorder="Titre">
                     <textarea name="contenu" placehorder="Contenu de l'article">
                     </textarea>
+                <select name="selectLM" id="selectLM">
+                    <option value="AC">Assassin's Creed</option>
+                    <option value="WOW">World of Warcraft</option>
+                    <option value="TLU">The last of US</option>
+                </select>
                 <input type="submit" name="submit" value="Envoyez">
             </form>
             <?php if(isset($message)) { echo $message; } ?>
