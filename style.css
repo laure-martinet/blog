@@ -201,7 +201,7 @@ footer{
 
     #deplacement_article{
         display: flex;
-        justify-content: center;
+        justify-content: right;
         padding-top: 3%;
         padding-bottom: 3%;
     }
@@ -210,7 +210,10 @@ footer{
         padding: 3%;
         border-radius: 5%;
         font-size: 150%;
-        text-align: center;
+        text-align: left;
+    }
+    .lr_text{
+        color: rgb(165, 155, 255);
     }
 
 

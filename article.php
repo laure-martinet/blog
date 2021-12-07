@@ -31,10 +31,10 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
     ?>
 </header>
 <main>
-    <p class="lr_h2">Catégorie : <?php echo $article['id_categorie'] ;?></p>
     <div id="deplacement_article"> 
-        <div id="lr_article"> 
-            <p class="lr_h2">Créée le <?php echo $article['date'] ;?></p>
+        <div id="lr_article">     
+            <p class="lr_text">Catégorie : <?php echo $article['id_categorie'] ;?></p>
+            <p class="lr_text">Créée le <?php echo $article['date'] ;?></p>
             <h1 class="lr_h2"><?= $titre ?></h1>
             <p class="lr_h2"><?= $contenu ?></p>
         </div>
