@@ -20,7 +20,7 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Accueil</title>
+    <title>Article</title>
     <meta charset="utf-8">
 </head>
 
@@ -33,10 +33,13 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
 <main>
     <div id="deplacement_article"> 
         <div id="lr_article">     
-            <p class="lr_text">Catégorie : <?php echo $article['id_categorie'] ;?></p>
+            <p class="lr_text">Catégorie : <?php if($article['id_categorie']=1){
+            echo $article['id_categorie'] ;
+            }?></p>
             <p class="lr_text">Créée le <?php echo $article['date'] ;?></p>
             <h1 class="lr_h2"><?= $titre ?></h1>
             <p class="lr_h2"><?= $contenu ?></p>
+
         </div>
     </div>
 </main>
