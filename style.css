@@ -199,7 +199,22 @@ footer{
 
 /* ARTICLE  */
 
-
+    #deplacement_article{
+        display: flex;
+        justify-content: right;
+        padding-top: 3%;
+        padding-bottom: 3%;
+    }
+    #lr_article{
+        background-color: rgb(37, 37, 37);
+        padding: 3%;
+        border-radius: 5%;
+        font-size: 150%;
+        text-align: left;
+    }
+    .lr_text{
+        color: rgb(165, 155, 255);
+    }
 
 
 
