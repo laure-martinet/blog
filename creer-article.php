@@ -1,81 +1,92 @@
 <?php
+
 session_start();
-var_dump($_SESSION);
+$bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
 
-if(isset($_POST['titrearticle']) && isset($_POST['contenu'])) {
-    if(!empty($_POST['titrearticle']) && !empty($_POST['contenu'])) {
+ if(!isset($_SESSION['id'])) // ID a changer a modérateur et admin
+{
+    exit();
+}
+else 
+{
 
-        $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', ''); 
 
-        if ($bdd == true)
+    $getid = intval($_SESSION['id']); // Convertie ma valeur en int ( ID = un numéro )
+    $requtilisateur = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?'); // créer une requete qui va récuperer tout de mon utilisateur de mon id actuel
+    $requtilisateur->execute(array($getid)); // return le tableau de mon utilisateur
+    $infoutilisateur = $requtilisateur->fetch(); // récupere les informations que j'appelle
+    $a_msg = "";
+
+    if(isset($_POST['submit_article'])) 
+    {
+
+    $titre = htmlspecialchars($_POST['titre']);
+    $article = htmlspecialchars($_POST['article']);
+
+        if(isset($_POST['article']) && !empty($_POST['article']))
         {
-            $titrearticle = htmlspecialchars($_POST['titrearticle']);
-            $contenu = htmlspecialchars($_POST['contenu']);
-            $id_user = $_SESSION['id'];
+            $articlelenght = strlen($_POST['article']);
 
-            // $ins = $bdd->prepare("INSERT INTO articles(titre, article, id_utilisateur, id_categorie, date, table) VALUES ('$titrearticle', '$contenu', $id_user, null, NOW(), null");
-            $ins = $bdd->prepare('INSERT INTO `articles`( `titre`, `article`, `id_utilisateur`, `id_categorie`, `date`) VALUES (:titre, :art, :id_user, :id_cat, :date)');
-            $ins->execute([
-                ':titre' => $titrearticle,
-                ':art' => $contenu,
-                ':id_user' => $id_user,
-                ':id_cat' => 0,
-                ':date' => date("m.d.y"),
-                
-            ]);
+            if($articlelenght > 5000)
+            $a_msg = "Votre article ne doit pas dépasser 5000 caractères !<br><br>";
 
-            if($ins == true)
-            {
-                $message = 'Votre article a bien été posté';
-            }
-            else
-            {
-                $message = 'erreur';
-            }
+        if ($a_msg == "") {
+            $lecommentaire = htmlspecialchars($_POST['article']);
+            $postage = $bdd->prepare('INSERT INTO articles (titre, article, id_utilisateur, id_categorie, date) VALUES (?,?,?,NOW())');
+            $postage->execute(array($getid,$lecommentaire,$titre));
+            $a_msg = "<span style='color:green'>Votre article a bien été posté</span><br><br>";
+            unset($_POST);
+            var_dump($postage);
+        }
         }
         else
         {
-            echo ('bdd pas ok');
+            $a_msg = "Champs vide";
+            unset($_POST);
         }
-}
-else {
-    $message = "Veuillez remplir tout les champs !";
-}
-}
+
+
+    }
+
 ?>
-<!doctype html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Cree article</title>
-    </head>
-    <body id="al_body">
-    <header>     
-            <?php
-                include_once('header.php');
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Créer un article</title>
+</head>
+<body id="al_body">
+    <header>
+            <?php 
+                    include_once('header.php'); 
             ?>
     </header>
-    <main id="al_main">
-        <div id="deplacement_form">
-            <form id="form_inscription" action="" method="post">
-                <h1 class="lr_h2">Crée article !</h1><br>
-                    <input type="text" name="titrearticle" placehorder="Titre">
-                    <textarea name="contenu" placehorder="Contenu de l'article">
-                    </textarea>
-                <select name="selectLM" id="selectLM">
-                    <option value="AC">Assassin's Creed</option>
-                    <option value="WOW">World of Warcraft</option>
-                    <option value="TLU">The last of US</option>
-                </select>
-                <input type="submit" name="submit" value="Envoyez">
-            </form>
-            <?php if(isset($message)) { echo $message; } ?>
-        </div>
-                <footer>
-                    <?php
-                include_once("footer.php");
-                    ?>
-                </footer>
-    </main>
+<main>
+    <form method="POST">
+        Votre pseudo : <?php echo $infoutilisateur['login'] ?><br><br>
+        <input type="text" placeholder="Titre" name="titre" id="titre" value="<?php if(isset($titre)) { echo $titre; } ?>" ><br><br>
+        <select name="select" id="select">
+                    <option value="categorie1">Assassin's Creed</option>
+                    <option value="categorie2">World of Warcraft</option>
+                    <option value="categorie3">The last of US</option>
+        </select><br><br>
+        <textarea name="article" placeholder="Votre article..." value="<?php if(isset($article)) { echo $article; } ?>" style="width: 300px; height: 100px"></textarea><br /><br>
+        <input type="submit" value="Poster mon article" name="submit_article"/>
+    </form>
+<br>
+    <?php if(isset($a_msg)) { echo $a_msg; } ?>
+</main>
+<footer>
+        <?php
+        include_once('footer.php'); 
+        ?>
+</footer>
+</body>
+</html>
+
+<?php 
+}
+?>
