@@ -46,6 +46,7 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
     <title>Article</title>
     <link rel="stylesheet" href="style.css" />
     <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body id="al_body">
