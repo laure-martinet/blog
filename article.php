@@ -45,8 +45,8 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
 <head>
     <title>Article</title>
     <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body id="al_body">
@@ -64,17 +64,18 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
             <p class="lr_text">Créée le <?php echo $article['date'] ;?></p>
             <h1 class="lr_h2"><?= $titre ?></h1>
             <p class="lr_h2"><?= $contenu ?></p>
-            
+                    <div id="lr_espace_commentaire">
                         <h2 class="lr_h2">Commentaires:</h2>
-                            <form method="POST">
+                            <form id="form_commentaire" method="POST">
                                 <input type="text" name="id" placeholder="Votre pseudo" /><br />
                                 <textarea name="commentaire" placeholder="Votre commentaire..."></textarea><br />
-                                <input type="submit" value="Poster mon commentaire" name="submit_commentaire" />
+                                <input type="submit" class="btn btn-secondary btn-lg" value="Poster mon commentaire" name="submit_commentaire" />
                             </form>
                             <?php if(isset($c_msg)) { echo $c_msg; } ?><br /><br />
                             <?php while($c = $commentaires->fetch()) { ?><b>
                             <?= $c['id'] ?>:</b> <?= $c['commentaire'] ?><br/>
                             <?php } ?>
+                    </div>
         </div>
     </div>
 </main>
