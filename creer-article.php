@@ -1,7 +1,7 @@
-<?php
 
-session_start();
+<?php
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+session_start();
 
  if(!isset($_SESSION['id'])) // ID a changer a modérateur et admin
 {
@@ -10,7 +10,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
 else 
 {
 
-
+    $listearticle = $bdd->query('SELECT * FROM categories ORDER BY id ASC');
     $getid = intval($_SESSION['id']); // Convertie ma valeur en int ( ID = un numéro )
     $requtilisateur = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?'); // créer une requete qui va récuperer tout de mon utilisateur de mon id actuel
     $requtilisateur->execute(array($getid)); // return le tableau de mon utilisateur
@@ -32,11 +32,10 @@ else
 
         if ($a_msg == "") {
             $lecommentaire = htmlspecialchars($_POST['article']);
-            $postage = $bdd->prepare('INSERT INTO articles (titre, article, id_utilisateur, id_categorie, date) VALUES (?,?,?,NOW())');
+            $postage = $bdd->prepare('INSERT INTO articles (id_utilisateur, article, titre, date) VALUES (?,?,?,NOW())');
             $postage->execute(array($getid,$lecommentaire,$titre));
             $a_msg = "<span style='color:green'>Votre article a bien été posté</span><br><br>";
             unset($_POST);
-            var_dump($postage);
         }
         }
         else
@@ -55,24 +54,20 @@ else
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title>Créer un article</title>
 </head>
-<body id="al_body">
+<body>
     <header>
-            <?php 
-                    include_once('header.php'); 
-            ?>
+
     </header>
 <main>
     <form method="POST">
         Votre pseudo : <?php echo $infoutilisateur['login'] ?><br><br>
         <input type="text" placeholder="Titre" name="titre" id="titre" value="<?php if(isset($titre)) { echo $titre; } ?>" ><br><br>
-        <select name="select" id="select">
-                    <option value="categorie1">Assassin's Creed</option>
-                    <option value="categorie2">World of Warcraft</option>
-                    <option value="categorie3">The last of US</option>
-        </select><br><br>
+
+          </select><br><br>
+
         <textarea name="article" placeholder="Votre article..." value="<?php if(isset($article)) { echo $article; } ?>" style="width: 300px; height: 100px"></textarea><br /><br>
         <input type="submit" value="Poster mon article" name="submit_article"/>
     </form>
@@ -80,9 +75,7 @@ else
     <?php if(isset($a_msg)) { echo $a_msg; } ?>
 </main>
 <footer>
-        <?php
-        include_once('footer.php'); 
-        ?>
+
 </footer>
 </body>
 </html>
