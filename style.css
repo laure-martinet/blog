@@ -213,12 +213,20 @@ footer{
         font-size: 150%;
         text-align: left;
     }
+
+#lr_titre_article{
+    text-decoration: underline;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    padding-bottom: 1%;
+}
+
     .lr_text{
         color: rgb(165, 155, 255);
     }
 
 #lr_espace_commentaire{
-    padding-top: 2%;
+    margin-top: 5%;
     background-color: rgb(87, 87, 87);
     border-radius: 3%;
     padding: 3%;
