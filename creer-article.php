@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 <?php
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
 session_start();
@@ -65,7 +69,11 @@ else
         Votre pseudo : <?php echo $infoutilisateur['login'] ?><br><br>
         <input type="text" placeholder="Titre" name="titre" id="titre" value="<?php if(isset($titre)) { echo $titre; } ?>" ><br><br>
 
+<<<<<<< HEAD
         </select><br><br>
+=======
+          </select><br><br>
+>>>>>>> master
 
         <textarea name="article" placeholder="Votre article..." value="<?php if(isset($article)) { echo $article; } ?>" style="width: 300px; height: 100px"></textarea><br /><br>
         <input type="submit" value="Poster mon article" name="submit_article"/>
