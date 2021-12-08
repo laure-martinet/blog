@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 <?php
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
 session_start();
@@ -57,23 +53,23 @@ else
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Créer un article</title>
 </head>
 <body>
     <header>
-
+<?php include_once('header.php'); ?>
     </header>
-<main>
-    <form method="POST">
+<main id="al_main">
+    <form id="form_inscription" method="POST">
         Votre pseudo : <?php echo $infoutilisateur['login'] ?><br><br>
         <input type="text" placeholder="Titre" name="titre" id="titre" value="<?php if(isset($titre)) { echo $titre; } ?>" ><br><br>
-
-<<<<<<< HEAD
         </select><br><br>
-=======
-          </select><br><br>
->>>>>>> master
+            <option>Assassin's Creed</option>
+            <option>World of Warcraft</option>
+            <option>The last of US</option>
+        </select><br><br>
+
 
         <textarea name="article" placeholder="Votre article..." value="<?php if(isset($article)) { echo $article; } ?>" style="width: 300px; height: 100px"></textarea><br /><br>
         <input type="submit" value="Poster mon article" name="submit_article"/>
@@ -82,7 +78,7 @@ else
     <?php if(isset($a_msg)) { echo $a_msg; } ?>
 </main>
 <footer>
-
+<?php include_once('footer.php'); ?>
 </footer>
 </body>
 </html>
