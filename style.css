@@ -236,6 +236,11 @@ footer{
     flex-direction: column;
     margin-top: 2%;
 }
+#lr_commentaire_1{
+    background-color: grey;
+    padding: 3%;
+
+}
 
 
 /* ARTICLES */

@@ -1,7 +1,7 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', ''); 
-
+//ARTICLE
 if(isset($_GET['id']) AND !empty($_GET['id'])) {
     $get_id = htmlspecialchars($_GET['id']);
     $article = $bdd->prepare('SELECT * FROM articles WHERE id = ?');
@@ -16,7 +16,7 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
 } else {
     die('Erreur');
 }
-
+            // ESPACE COMMENTAIRES
                 if(isset($_GET['id']) AND !empty($_GET['id'])) {
                     $getid = htmlspecialchars($_GET['id']);
                     $article = $bdd->prepare('SELECT * FROM articles WHERE id = ?');
@@ -71,10 +71,15 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
                                 <textarea name="commentaire" placeholder="Votre commentaire..."></textarea><br />
                                 <input type="submit" class="btn btn-secondary btn-lg" value="Poster mon commentaire" name="submit_commentaire" />
                             </form>
-                            <?php if(isset($c_msg)) { echo $c_msg; } ?><br /><br />
-                            <?php while($c = $commentaires->fetch()) { ?><b>
-                            <?= $c['id'] ?>:</b> <?= $c['commentaire'] ?><br/>
-                            <?php } ?>
+                            <div>
+                                <?php if(isset($c_msg)) { echo $c_msg; } ?><br /><br />
+                                <?php while($c = $commentaires->fetch()) { ?><b>
+                                <div >
+                                    <p class="lr_text">Créée le <?php echo $c['date'] ;?></p>
+                                    <p id="lr_commentaire_1">Login:<?= $c['id'] ?></br> Commentaire:<?= $c['commentaire'] ?></p><br/>
+                                </div>
+                                <?php } ?>
+                            </div>
                     </div>
         </div>
     </div>
