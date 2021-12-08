@@ -62,7 +62,7 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
             echo $article['id_categorie'] ;
             }?></p>
             <p class="lr_text">Créée le <?php echo $article['date'] ;?></p>
-            <h1 class="lr_h2"><?= $titre ?></h1>
+            <h1 id="lr_titre_article"><?= $titre ?></h1>
             <p class="lr_h2"><?= $contenu ?></p>
                     <div id="lr_espace_commentaire">
                         <h2 class="lr_h2">Commentaires:</h2>
