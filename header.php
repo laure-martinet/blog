@@ -15,7 +15,7 @@
         </div> 
         <ul class="lr_ul_header">
             <?php 
-            if($_SESSION['id_droits'] == 1){
+            if($_SESSION['id_droits'] == 0){
             ?>
                 <li ><a class="lr_li_header" href="index.php">Accueil</a></li> 
                 <div class="dropdown">
