@@ -223,23 +223,41 @@ footer{
 
     .lr_text{
         color: rgb(165, 155, 255);
-    }
+    } 
+
+        /* commentaire*/
 
 #lr_espace_commentaire{
-    margin-top: 5%;
+    /* margin-top: 5%; */
     background-color: rgb(87, 87, 87);
     border-radius: 3%;
     padding: 3%;
+    margin-top: 5%;
+
 }
 #form_commentaire{
     display: flex;
     flex-direction: column;
-    margin-top: 2%;
+    /* margin-top: 2%; */
+}
+#lr_position_comm{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: lighter;
+}
+.lr_message{
+    color: greenyellow;
+    text-align: center;
+    font-weight: bolder;
+}
+.lr_error{
+    color: rgb(221, 3, 3);
+    text-align: center;
+    font-weight: bolder;
 }
 #lr_commentaire_1{
     background-color: grey;
     padding: 3%;
-
+    color: white;
 }
 
 

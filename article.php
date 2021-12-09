@@ -24,12 +24,12 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
                     $article = $article->fetch();
                     if(isset($_POST['submit_commentaire'])) {
                     if(isset($_POST['id'],$_POST['commentaire']) AND !empty($_POST['id']) AND !empty($_POST['commentaire'])) {
-                        $pseudo = htmlspecialchars($_POST['id']);
+                        $pseudo = htmlspecialchars($_SESSION['login']);
                         $commentaire = htmlspecialchars($_POST['commentaire']);
                         if(strlen($pseudo) < 25) {
                             $ins = $bdd->prepare('INSERT INTO commentaires (id, commentaire, id_article) VALUES (?,?,?)');
                             $ins->execute(array($pseudo,$commentaire,$getid));
-                            $c_msg = "<span style='color:green'>Votre commentaire a bien été posté</span>";
+                            $c_msg = "<span class='lr_message'>Votre commentaire a bien été posté</span>";
                         } else {
                             $c_msg = "Erreur: Le id doit faire moins de 25 caractères";
                         }
@@ -71,14 +71,14 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
                                 <textarea name="commentaire" placeholder="Votre commentaire..."></textarea><br />
                                 <input type="submit" class="btn btn-secondary btn-lg" value="Poster mon commentaire" name="submit_commentaire" />
                             </form>
-                            <div>
-                                <?php if(isset($c_msg)) { echo $c_msg; } ?><br /><br />
-                                <?php while($c = $commentaires->fetch()) { ?><b>
-                                <div >
-                                    <p class="lr_text">Créée le <?php echo $c['date'] ;?></p>
-                                    <p id="lr_commentaire_1">Login:<?= $c['id'] ?></br> Commentaire:<?= $c['commentaire'] ?></p><br/>
-                                </div>
+                            <div id="lr_position_comm">
+                                <div class="lr_error"><?php if(isset($c_msg)) { echo $c_msg; } ?><br /><br /></div>
+                                <?php while($c = $commentaires->fetch()) { ?><br>
+                                    Login: <?php echo $c['id'] ;?><br>
+                                    Créée le <?php echo $c['date'] ;?><br>
+                                    <p id="lr_commentaire_1"></br> Commentaire:<?= $c['commentaire'] ?></p><br/>
                                 <?php } ?>
+                                </div>
                             </div>
                     </div>
         </div>
