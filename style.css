@@ -262,8 +262,18 @@ footer{
 
 
 /* ARTICLES */
-
-
+.al_liste{
+}
+#al_articles{
+    background-color: rgb(37, 37, 37);
+    padding: 3%;
+    border-radius: 5%;
+    background-size: 20%; 
+    font-size: 250%;
+    /* display: flex; */
+    justify-content: center;
+    text-align: center;
+}
 
 
 
