@@ -1,9 +1,7 @@
 <?php
-<<<<<<< Updated upstream
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
 =======
 require('config/bdd.php');
->>>>>>> Stashed changes
 session_start();
 
  if(!isset($_SESSION['id'])) // ID a changer a modérateur et admin
@@ -62,9 +60,7 @@ else
 </head>
 <body>
     <header>
-<<<<<<< Updated upstream
 
-=======
             <?php if (isset($_SESSION['login'])) {
                     include_once("include/headeronline.php");
                 } 
@@ -72,20 +68,16 @@ else
                     include_once('include/header.php'); 
                 }
                 ?>
->>>>>>> Stashed changes
     </header>
 <main>
     <form method="POST">
         Votre pseudo : <?php echo $infoutilisateur['login'] ?><br><br>
         <input type="text" placeholder="Titre" name="titre" id="titre" value="<?php if(isset($titre)) { echo $titre; } ?>" ><br><br>
-<<<<<<< Updated upstream
 
-=======
         <?php while($lis = $listearticle->fetch()) { ?>
           <select name="select" id="select">
                     <option value="categorie"><?= $listearticle['nom'] ?></option>
         <?php } ?>
->>>>>>> Stashed changes
           </select><br><br>
 
         <textarea name="article" placeholder="Votre article..." value="<?php if(isset($article)) { echo $article; } ?>" style="width: 300px; height: 100px"></textarea><br /><br>
@@ -95,13 +87,10 @@ else
     <?php if(isset($a_msg)) { echo $a_msg; } ?>
 </main>
 <footer>
-<<<<<<< Updated upstream
 
-=======
         <?php
         include_once('include/footer.php'); 
         ?>
->>>>>>> Stashed changes
 </footer>
 </body>
 </html>
