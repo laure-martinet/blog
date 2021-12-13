@@ -2,23 +2,21 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
 
-if(isset($_GET['type']) AND $_GET['type'] == 'utilisateurs') {
-   
-   }
    if(isset($_GET['supprime']) AND !empty($_GET['supprime'])) {
       $supprime = (int) $_GET['supprime'];
       $req = $bdd->prepare('DELETE FROM utilisateurs WHERE id = ?');
       $req->execute(array($supprime));
    }
    
-   if(isset($_GET['supprime']) AND !empty($_GET['supprime'])) {
-      $supprime = (int) $_GET['supprime'];
+   if(isset($_GET['supprimearticle']) AND !empty($_GET['supprimearticle'])) {
+      $supprime = (int) $_GET['supprimearticle'];
       $req = $bdd->prepare('DELETE FROM articles WHERE id = ?');
       $req->execute(array($supprime));
    }
 
-$membres = $bdd->query('SELECT * FROM utilisateurs ORDER BY id DESC LIMIT 0,5');
 
+$membres = $bdd->query('SELECT * FROM utilisateurs ORDER BY id DESC LIMIT 0,5');
+$article = $bdd->query('SELECT * FROM articles ORDER BY id DESC LIMIT 0,5');
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,7 +35,12 @@ include_once('header.php');
   <div id="LMadmin">
     <ul>
         <?php while($m = $membres->fetch()) { ?>
-        <li><?= $m['id'] ?> : <?= $m['login'] ?> - <a href="index.php?type=supprime=<?= $m['id'] ?>">Supprimer</a></li>
+        <li><?= $m['id'] ?> : <?= $m['login'] ?> - <a href="admin.php?supprime=<?= $m['id'] ?>">Supprimer user</a></li>
+        <?php } ?>
+    </ul>
+    <ul>
+        <?php while($a = $article->fetch()) { ?>
+        <li><?= $a['id'] ?> : <?= $a['article'] ?> - <a href="admin.php?supprime=<?= $a['id'] ?>">Supprimer article</a></li>
         <?php } ?>
     </ul>
     <br /><br />
