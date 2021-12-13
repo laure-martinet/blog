@@ -2,11 +2,11 @@
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
 session_start();
 
- if(!isset($_SESSION['id'])) // ID a changer a modérateur et admin
-{
-    exit();
-}
-else 
+//  if(!isset($_SESSION['id'])) // ID a changer a modérateur et admin
+// {
+//     exit();
+// }
+// else 
 {
 
     $listearticle = $bdd->query('SELECT * FROM categories ORDER BY id ASC');
@@ -56,16 +56,21 @@ else
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title>Créer un article</title>
 </head>
-<body>
+<body id="al_body">
     <header>
-
+    <?php include_once('header.php'); ?>
     </header>
-<main>
-    <form method="POST">
+<main id="al_main">
+    <form id="form_inscription" method="POST">
         Votre pseudo : <?php echo $infoutilisateur['login'] ?><br><br>
         <input type="text" placeholder="Titre" name="titre" id="titre" value="<?php if(isset($titre)) { echo $titre; } ?>" ><br><br>
+        <textarea></textarea>
+            <select name="select" id="select">
+                    <?php while ($lis = $listecate->fetch()) { ?>
 
-          </select><br><br>
+                        <option><?= $lis['nom'] ?></option>
+                    <?php } ?>
+                </select><br><br>
 
         <textarea name="article" placeholder="Votre article..." value="<?php if(isset($article)) { echo $article; } ?>" style="width: 300px; height: 100px"></textarea><br /><br>
         <input type="submit" value="Poster mon article" name="submit_article"/>
@@ -74,7 +79,7 @@ else
     <?php if(isset($a_msg)) { echo $a_msg; } ?>
 </main>
 <footer>
-
+<?php include_once('footer.php'); ?>
 </footer>
 </body>
 </html>
