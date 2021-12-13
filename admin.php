@@ -40,7 +40,7 @@ include_once('header.php');
     </ul>
     <ul>
         <?php while($a = $article->fetch()) { ?>
-        <li><?= $a['id'] ?> : <?= $a['article'] ?> - <a href="admin.php?supprime=<?= $a['id'] ?>">Supprimer article</a></li>
+        <li><?= $a['article'] ?> - <a href="admin.php?supprimearticle=<?= $a['id'] ?>">Supprimer article</a></li>
         <?php } ?>
     </ul>
     <br /><br />
