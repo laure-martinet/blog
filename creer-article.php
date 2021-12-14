@@ -2,20 +2,19 @@
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
 session_start();
 
-//  if(!isset($_SESSION['id'])) // ID a changer a modérateur et admin
-// {
-//     exit();
-// }
-// else 
+// if(!isset($_SESSION['id'])) // ID a changer a modérateur et admin
+//  {
+//      exit();
+//  }
+//  else 
 {
-
+    
     $listecate = $bdd->query('SELECT * FROM categories ORDER BY id ASC');
     $getid = intval($_SESSION['id']); // Convertie ma valeur en int ( ID = un numéro )
     $requtilisateur = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?'); // créer une requete qui va récuperer tout de mon utilisateur de mon id actuel
     $requtilisateur->execute(array($getid)); // return le tableau de mon utilisateur
     $infoutilisateur = $requtilisateur->fetch(); // récupere les informations que j'appelle
     $a_msg = "";
-    $categorie
 
     if(isset($_POST['submit_article'])) 
     {
@@ -31,10 +30,10 @@ session_start();
             $a_msg = "Votre article ne doit pas dépasser 5000 caractères !<br><br>";
 
         if ($a_msg == "") {
-            $getcateg = $bdd->query('SELECT id FROM categories WHERE ')
+            // $getcateg = $bdd->query('SELECT id FROM categories WHERE ')
             $lecommentaire = htmlspecialchars($_POST['article']);
             $postage = $bdd->prepare('INSERT INTO articles (id_utilisateur, id_categorie, article, titre, date) VALUES (?,?,?,?,NOW())');
-            $postage->execute(array($getcateg,$getid,$lecommentaire,$titre));
+            $postage->execute(array($getid,$lecommentaire,$titre));
             $a_msg = "<span style='color:green'>Votre article a bien été posté</span><br><br>";
             unset($_POST);
         }
