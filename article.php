@@ -23,20 +23,25 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
                     $article->execute(array($getid));
                     $article = $article->fetch();
                     if(isset($_POST['submit_commentaire'])) {
-                    if(isset($_POST['id'],$_POST['commentaire']) AND !empty($_POST['id']) AND !empty($_POST['commentaire'])) {
-                        $pseudo = htmlspecialchars($_SESSION['login']);
-                        $commentaire = htmlspecialchars($_POST['commentaire']);
-                        if(strlen($pseudo) < 25) {
-                            $ins = $bdd->prepare('INSERT INTO commentaires (id, commentaire, id_article) VALUES (?,?,?)');
-                            $ins->execute(array($pseudo,$commentaire,$getid));
-                            $c_msg = "<span class='lr_message'>Votre commentaire a bien été posté</span>";
+                        if(isset($_POST['id'],$_POST['commentaire']) AND !empty($_POST['id']) AND !empty($_POST['commentaire'])) {
+                            $pseudo = htmlspecialchars($_SESSION['login']);
+                            $commentaire = htmlspecialchars($_POST['commentaire']);
+                            if(strlen($pseudo) < 25) {
+                                $ins = $bdd->prepare('INSERT INTO commentaires (id, commentaire, id_article) VALUES (?,?,?)');
+                                $ins->execute(array($pseudo,$commentaire,$getid));
+                                $c_msg = "<span class='lr_message'>Votre commentaire a bien été posté</span>";
+                                header("location: #redirect");
+                                unset($_POST);
+                            } else {
+                                $c_msg = "Erreur: Le id doit faire moins de 25 caractères";
+                            }
                         } else {
-                            $c_msg = "Erreur: Le id doit faire moins de 25 caractères";
+                            $c_msg = "Erreur: Tous les champs doivent être complétés";
                         }
-                    } else {
-                        $c_msg = "Erreur: Tous les champs doivent être complétés";
                     }
-                    }
+                    // $affichlogin = $bdd->prepare('SELECT * FROM utilisateurs WHERE login = ?');
+                    // $affichlogin->execute(array($getlogin));
+
                     $commentaires = $bdd->prepare('SELECT * FROM commentaires WHERE id_article = ? ORDER BY id DESC');
                     $commentaires->execute(array($getid));
 ?>
@@ -65,12 +70,24 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
             <h1 id="lr_titre_article"><?= $titre ?></h1>
             <p class="lr_h2"><?= $contenu ?></p>
                     <div id="lr_espace_commentaire">
+                        <?php if(isset($_SESSION['login']) == true){ ?>
                         <h2 class="lr_h2">Commentaires:</h2>
                             <form id="form_commentaire" method="POST">
                                 <input type="text" name="id" placeholder="Votre pseudo" /><br />
                                 <textarea name="commentaire" placeholder="Votre commentaire..."></textarea><br />
-                                <input type="submit" class="btn btn-secondary btn-lg" value="Poster mon commentaire" name="submit_commentaire" />
+                                <input type="submit" class="btn btn-secondary btn-lg" value="Poster mon commentaire" name="submit_commentaire" href="redirect"/>
                             </form>
+                            <?php }
+                            else {
+                                echo "<p class='lr_error'>Vous devez être connecté pour poster !<br><a class='lr_error' href='connexion.php'>Connectez-vous ici</a></p> 
+                                ";
+                                ?>
+                            <?php }
+                            ?>
+                            <div id="lr_position_comm">
+                                <?php /* while($l = $affichlogin->fetch()) { ?><br>
+                                    Login: <?php echo $l['login'] ;?><br>
+                                <?php } */?>
                             <div id="lr_position_comm">
                                 <div class="lr_error"><?php if(isset($c_msg)) { echo $c_msg; } ?><br /><br /></div>
                                 <?php while($c = $commentaires->fetch()) { ?><br>
