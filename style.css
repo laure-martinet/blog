@@ -209,7 +209,7 @@ footer{
     #lr_article{
         background-color: rgb(37, 37, 37);
         padding: 3%;
-        border-radius: 5%;
+        border-radius: 1%;
         font-size: 150%;
         text-align: left;
     }
@@ -228,9 +228,7 @@ footer{
         /* commentaire*/
 
 #lr_espace_commentaire{
-    /* margin-top: 5%; */
     background-color: rgb(87, 87, 87);
-    border-radius: 3%;
     padding: 3%;
     margin-top: 5%;
 
@@ -238,11 +236,11 @@ footer{
 #form_commentaire{
     display: flex;
     flex-direction: column;
-    /* margin-top: 2%; */
 }
 #lr_position_comm{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: lighter;
+    color: white;
 }
 .lr_message{
     color: greenyellow;
@@ -254,16 +252,30 @@ footer{
     text-align: center;
     font-weight: bolder;
 }
+#lr_info_comm{
+    font-size: smaller;
+}
 #lr_commentaire_1{
     background-color: grey;
-    padding: 3%;
-    color: white;
+    padding-bottom: 3%;
+    padding-left: 3%;
+    font-size: smaller;
 }
 
 
 /* ARTICLES */
-
-
+.al_liste{
+}
+#al_articles{
+    background-color: rgb(37, 37, 37);
+    padding: 3%;
+    border-radius: 5%;
+    background-size: 20%; 
+    font-size: 250%;
+    /* display: flex; */
+    justify-content: center;
+    text-align: center;
+}
 
 
 

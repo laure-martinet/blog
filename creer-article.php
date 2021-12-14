@@ -1,5 +1,6 @@
 <?php
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+require('config/bdd.php');
 session_start();
 
 // if(!isset($_SESSION['id'])) // ID a changer a modérateur et admin
@@ -59,12 +60,33 @@ session_start();
 </head>
 <body id="al_body">
     <header>
+<<<<<<< HEAD
     <?php include_once('header.php'); ?>
+=======
+
+            <?php if (isset($_SESSION['login'])) {
+                    include_once("include/headeronline.php");
+                } 
+                else{
+                    include_once('include/header.php'); 
+                }
+                ?>
+>>>>>>> master
     </header>
 <main id="al_main">
     <form id="form_inscription" method="POST">
         Votre pseudo : <?php echo $infoutilisateur['login'] ?><br><br>
         <input type="text" placeholder="Titre" name="titre" id="titre" value="<?php if(isset($titre)) { echo $titre; } ?>" ><br><br>
+<<<<<<< HEAD
+=======
+
+        <?php while($lis = $listearticle->fetch()) { ?>
+          <select name="select" id="select">
+                    <option value="categorie"><?= $listearticle['nom'] ?></option>
+        <?php } ?>
+          </select><br><br>
+
+>>>>>>> master
         <textarea name="article" placeholder="Votre article..." value="<?php if(isset($article)) { echo $article; } ?>" style="width: 300px; height: 100px"></textarea><br /><br>
             <select name="select" id="select">
                     <?php while ($lis = $listecate->fetch()) { ?>
@@ -78,7 +100,14 @@ session_start();
     <?php if(isset($a_msg)) { echo $a_msg; } ?>
 </main>
 <footer>
+<<<<<<< HEAD
 <?php include_once('footer.php'); ?>
+=======
+
+        <?php
+        include_once('include/footer.php'); 
+        ?>
+>>>>>>> master
 </footer>
 </body>
 </html>
