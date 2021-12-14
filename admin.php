@@ -17,6 +17,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
 
 $membres = $bdd->query('SELECT * FROM utilisateurs ORDER BY id DESC LIMIT 0,5');
 $article = $bdd->query('SELECT * FROM articles ORDER BY id DESC LIMIT 0,5');
+
 ?>
 <!DOCTYPE html>
 <html>
