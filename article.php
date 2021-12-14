@@ -1,7 +1,7 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', ''); 
-
+//ARTICLE
 if(isset($_GET['id']) AND !empty($_GET['id'])) {
     $get_id = htmlspecialchars($_GET['id']);
     $article = $bdd->prepare('SELECT * FROM articles WHERE id = ?');
@@ -16,7 +16,7 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
 } else {
     die('Erreur');
 }
-            
+            // ESPACE COMMENTAIRES
                 if(isset($_GET['id']) AND !empty($_GET['id'])) {
                     $getid = htmlspecialchars($_GET['id']);
                     $article = $bdd->prepare('SELECT * FROM articles WHERE id = ?');
@@ -24,20 +24,14 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
                     $article = $article->fetch();
                     if(isset($_POST['submit_commentaire'])) {
                     if(isset($_POST['id'],$_POST['commentaire']) AND !empty($_POST['id']) AND !empty($_POST['commentaire'])) {
-                        // if(isset($_SESSION['login']) AND !empty($SESSION['login'])){
-                        //     echo "Vous devez être connecté pour poster un commentaire";
-                        // }
-                        $pseudo = htmlspecialchars($_POST['id_utilisateur']);
-                        $commentaire = htmlspecialchars($_POST['commentaire']); 
-                        $id_utilisateur = htmlspecialchars($id_utilisateur);
-                        // $id_utilisateur = $_POST['id'] == $_SESSION['login'];
-                        // var_dump($id_utilisateur);
+                        $pseudo = htmlspecialchars($_SESSION['login']);
+                        $commentaire = htmlspecialchars($_POST['commentaire']);
                         if(strlen($pseudo) < 25) {
-                            $ins = $bdd->prepare('INSERT INTO commentaires (id_utilisateur, commentaire, id_article, id) VALUES (?,?,?,?)');
-                            $ins->execute(array($pseudo,$commentaire,$getid, $id_utilisateur));
-                            $c_msg = "<span style='color:green'>Votre commentaire a bien été posté</span>";
-                                header("location: #redirect");
-                                unset($_POST);
+                            $ins = $bdd->prepare('INSERT INTO commentaires (id, commentaire, id_article) VALUES (?,?,?)');
+                            $ins->execute(array($pseudo,$commentaire,$getid));
+                            $c_msg = "<span class='lr_message'>Votre commentaire a bien été posté</span>";
+                            header("location: #redirect");
+                            unset($_POST);
                         } else {
                             $c_msg = "Erreur: Le id doit faire moins de 25 caractères";
                         }
@@ -47,15 +41,6 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
                     }
                     $commentaires = $bdd->prepare('SELECT * FROM commentaires WHERE id_article = ? ORDER BY id DESC');
                     $commentaires->execute(array($getid));
-                        //afficher login
-                        // if(isset($_POST['login']) AND !empty($_POST['login'])){
-                        //     $login = htmlspecialchars($_GET['login']);
-                        //     $affichlogincomm = $bdd->prepare('SELECT login FROM utilisateurs WHERE login = ?');
-                        //     $affichlogincomm->execute(array($logincomm));
-                        //     if($affichlogincomm->rowCount() == 1){
-                        //         $afficherlogin = $_SESSION['login'];
-                        //     }
-                        // }
 ?>
 <!DOCTYPE html>
 <html>
@@ -79,9 +64,8 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
             echo $article['id_categorie'] ;
             }?></p>
             <p class="lr_text">Créée le <?php echo $article['date'] ;?></p>
-            <h1 class="lr_h2"><?= $titre ?></h1>
+            <h1 id="lr_titre_article"><?= $titre ?></h1>
             <p class="lr_h2"><?= $contenu ?></p>
-                    <div id="lr_espace_commentaire">
                     <div id="lr_espace_commentaire">
                         <h2 class="lr_h2">Commentaires:</h2>
                             <form id="form_commentaire" method="POST">
@@ -92,10 +76,8 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
                             <div id="lr_position_comm">
                                 <div class="lr_error"><?php if(isset($c_msg)) { echo $c_msg; } ?><br /><br /></div>
                                 <?php while($c = $commentaires->fetch()) { ?><br>
-                                    <div id="lr_info_comm"> 
-                                        Id :<?php echo $c['id_utilisateur'] ;?><br>
-                                        Créée le <?php echo $c['date'] ;?><br>
-                                    </div>
+                                    Login: <?php echo $c['id'] ;?><br>
+                                    Créée le <?php echo $c['date'] ;?><br>
                                     <p id="lr_commentaire_1"></br> Commentaire:<?= $c['commentaire'] ?></p><br/>
                                 <?php } ?>
                                 </div>
