@@ -18,17 +18,14 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
 }
             // ESPACE COMMENTAIRES
                 if(isset($_GET['id']) AND !empty($_GET['id'])) {
-                    $getid = htmlspecialchars($_GET['id']);
-                    $article = $bdd->prepare('SELECT * FROM articles WHERE id = ?');
-                    $article->execute(array($getid));
-                    $article = $article->fetch();
+                    $getid = intval($_GET['id']);
+                    $getid_u = intval($_SESSION['id']);
                     if(isset($_POST['submit_commentaire'])) {
-                        if(isset($_POST['id'],$_POST['commentaire']) AND !empty($_POST['id']) AND !empty($_POST['commentaire'])) {
-                            $pseudo = htmlspecialchars($_SESSION['login']);
+                        if(isset($_POST['commentaire']) AND !empty($_POST['commentaire'])) {
                             $commentaire = htmlspecialchars($_POST['commentaire']);
-                            if(strlen($pseudo) < 25) {
-                                $ins = $bdd->prepare('INSERT INTO commentaires (id, commentaire, id_article) VALUES (?,?,?)');
-                                $ins->execute(array($pseudo,$commentaire,$getid));
+                            if(intval($getid) > 0) {
+                                $ins = $bdd->prepare('INSERT INTO commentaires (commentaire, id_article, id_utilisateur, date) VALUES(?,?,?,NOW())');
+                                $ins->execute(array($commentaire, $getid, $getid_u));
                                 $c_msg = "<span class='lr_message'>Votre commentaire a bien été posté</span>";
                                 header("location: #redirect");
                                 unset($_POST);
@@ -39,11 +36,7 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
                             $c_msg = "Erreur: Tous les champs doivent être complétés";
                         }
                     }
-                    // $affichlogin = $bdd->prepare('SELECT * FROM utilisateurs WHERE login = ?');
-                    // $affichlogin->execute(array($getlogin));
-
-                    $commentaires = $bdd->prepare('SELECT * FROM commentaires WHERE id_article = ? ORDER BY id DESC');
-                    $commentaires->execute(array($getid));
+                    $commentaires = $bdd->query('SELECT * FROM commentaires INNER JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id ORDER BY date DESC');
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,7 +66,6 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
                         <?php if(isset($_SESSION['login']) == true){ ?>
                         <h2 class="lr_h2">Commentaires:</h2>
                             <form id="form_commentaire" method="POST">
-                                <input type="text" name="id" placeholder="Votre pseudo" /><br />
                                 <textarea name="commentaire" placeholder="Votre commentaire..."></textarea><br />
                                 <input type="submit" class="btn btn-secondary btn-lg" value="Poster mon commentaire" name="submit_commentaire" href="redirect"/>
                             </form>
@@ -85,16 +77,23 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
                             <?php }
                             ?>
                             <div id="lr_position_comm">
-                                <?php /* while($l = $affichlogin->fetch()) { ?><br>
-                                    Login: <?php echo $l['login'] ;?><br>
-                                <?php } */?>
-                            <div id="lr_position_comm">
                                 <div class="lr_error"><?php if(isset($c_msg)) { echo $c_msg; } ?><br /><br /></div>
-                                <?php while($c = $commentaires->fetch()) { ?><br>
-                                    Login: <?php echo $c['id'] ;?><br>
-                                    Créée le <?php echo $c['date'] ;?><br>
-                                    <p id="lr_commentaire_1"></br> Commentaire:<?= $c['commentaire'] ?></p><br/>
-                                <?php } ?>
+                                <?php 
+                                    while($c = $commentaires->fetch()) { 
+                                        if($c['id_article']==$get_id){ 
+                                            echo $c['login'] ;?><br>
+                                            Créée le <?php echo $c['date'] ;?><br>
+                                            <p id="lr_commentaire_1"><?= $c['commentaire'] ?></p><br/>
+                                                <!-- SI PAS DE COMMENTAIRES, MESSAGE  -->
+                                                <?php /*
+                                                $count = "SELECT COUNT(id) FROM commentaires WHERE id_article = '$getid'";
+                                                $bdd->query($count);
+                                                if(isset($count)==0){ 
+                                                    echo "Pas de commentaires" ;
+                                                    var_dump($count);
+                                                    } */ ?>
+                                        <?php } 
+                                    }?>
                                 </div>
                             </div>
                     </div>
