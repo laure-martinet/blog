@@ -13,6 +13,7 @@ if (isset($_POST['submit'])){
             $requete->execute(array($login));
             $loginexist= $requete->rowCount();
             ($requete);
+            $id_droits= 1;
 
             if ($loginlenght > 255)
             $erreur= "Votre pseudo ne doit pas depasser 255 caractères !";        
@@ -22,8 +23,8 @@ if (isset($_POST['submit'])){
                     $erreur = "Login déjà pris !";
             if($erreur == ""){
                 $hashage = password_hash($password, PASSWORD_BCRYPT);
-                $insertmbr= $bdd->prepare("INSERT INTO  utilisateurs (login, email, password) VALUES(?, ?, ?)");
-                $insertmbr->execute(array($login, $email, $hashage));
+                $insertmbr= $bdd->prepare("INSERT INTO  utilisateurs (login, email, password, id_droits) VALUES(?, ?, ?, ?)");
+                $insertmbr->execute(array($login, $email, $hashage, $id_droits));
                 $erreur = "Votre compte à bien été créer !";
             }
         }
