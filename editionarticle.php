@@ -1,34 +1,32 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
+if(isset($_GET['id']) AND !empty($_GET['id'])){
+$getid = $_GET['id'];
 
-if(isset($_SESSION['id']))
-{
-    // $getid = intval($_SESSION['id']);
-    $requtilisateur = $bdd->prepare('SELECT * FROM articles WHERE id = ?');
-    $requtilisateur->execute(array($_SESSION['id']));
-    $infoutilisateur = $requtilisateur->fetch();
+$recuparticle = $bdd->prepare('SELECT * FROM articles WHERE id = ?');
+$recuparticle->execute(array($getid));
+// TOUT CA PERMET DE RECUP L'ARTICLE DE L'ID UTILISATEUR
+if($recuparticle->rowCount() > 0){
+$articleInfos = $recuparticle->fetch();
+$titre = $articleInfos['titre'];
+$contenu = $articleInfos['article'];
 
-    if(isset($_POST['newarticle']) && !empty($_POST['newarticle']) && $_POST['newarticle'] != $infoutilisateur['article'])
-    {
-        $login= $_POST['newarticle']; 
-        $requetelogin = $bdd->prepare("SELECT * FROM articles WHERE nom = ?"); // SAVOIR SI LE MEME LOGIN EST PRIS
-        $requetelogin->execute(array($article));
-        $newlogin = htmlspecialchars($_POST['newlogin']);
-        $insertlogin = $bdd->prepare("UPDATE articles SET nom = ? WHERE id = ?");
-        $insertlogin->execute(array($newarticle, $_SESSION['id']));
-        // header('Location: profil.php');
-        }
-    }
+if(isset($_POST['Valider'])){
+$titre_saisie = htmlspecialchars($_POST['titre']);
+$contenu_saisie = htmlspecialchars($_POST['article']);
 
-    
-    if(isset($_POST['newtitre']) && !empty($_POST['newtitre']) && $_POST['newtitre'] != $infoutilisateur['titre'])
-    {
-        $newnom = htmlspecialchars($_POST['newtitre']);
-        $insertnom = $bdd->prepare("UPDATE articles SET nom = ? WHERE id = ?");
-        $insertnom->execute(array($newtitre, $_SESSION['id']));
-        // header('Location: profil.php');
-    }
+$updatearticle = $bdd->prepare('UPDATE articles SET titre = ? AND article = ? WHERE id = ?');
+$updatearticle->execute(array($titre_saisie, $contenu_saisie, $getid));
+}
+}
+else{
+    echo "Aucun article trouvé";
+}
+}
+else{
+    echo "Aucun utilisateur trouver mgl";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,9 +42,25 @@ include_once('header.php');
 ?>
 </header>
 <main id="al_main">
+    <form id="form_inscription" method="POST">
   <div id="LMedition">
+<?php
+$recuparticle = $bdd->query('SELECT * FROM articles');
+while ($article = $recuparticle->fetch()){
+    ?>
+    <div class="article">
+        <input type="text" name="titre"value="<?= $article['titre']; ?>">
+        <textarea name="contenu"><?= $article['article']; ?></textarea>
 
-    <a href="deconnexion"><input type="button" value="Déconnexion"></a>
+        <a href="supprimerarticle.php?id=<?= $article['id']; ?>">
+        <button style="color:red;">Supprimer article</button>
+        <input type="submit" name="Valider">
+        </a>
+    </div>
+</form>
+    <?php
+}
+?>
   </div>
   </main>
   <footer>

@@ -2,7 +2,7 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
 
-$utilisateurs = $bdd->query('SELECT utilisateurs.`id` as idu, `login`, `password`, `email`, `id_droits`,`nom` FROM `utilisateurs` INNER JOIN droits ON droits.id = utilisateurs.id_droits ORDER BY utilisateurs.id ASC;');
+$utilisateurs = $bdd->query('SELECT utilisateurs.`id` as idutilisateur, `login`, `password`, `email`, `id_droits`,`nom` FROM `utilisateurs` INNER JOIN droits ON droits.id = utilisateurs.id_droits ORDER BY utilisateurs.id ASC;');
 $listedroits = $bdd->query('SELECT * FROM droits');
 $lis = $listedroits->fetchAll();
 
@@ -84,60 +84,61 @@ if (isset($_POST['select'])) {
 </head>
 
 <body id="al_body">
-    <header>
-        <?php 
+   <header>
+      <?php 
             include_once('header.php');
-        
-        ?>
-    </header>
+      ?>
+   </header>
 
-    <main id="al_main">
-        <h2>Espace Administrateur</h2>
-        <br />
-        <table>
-            <thead>
-                <tr class=test>
-                    <th class=test>Login</th>
-                    <th class=test>Email</th>
-                    <th class=test>Droits</th>
-                    <th class=test>Action</th>
-                </tr>
+   <main id="al_main">
+      <h1 id="LMh1">Espace Administrateur</h1>
+      <br />
+   <table>
+      <thead>
+         <tr class="test">
+            <th class="test">Login</th>
+            <th class="test">Email</th>
+            <th class="test">Droits</th>
             </thead>
             <?php while ($u = $utilisateurs->fetch()) { ?>
-                <form id="form_inscription" method="POST">
+               <form id="form_inscription" method="POST">
 
-                    <input id="id" type="hidden" name="id" value="<?php echo $u['idu']; ?>">
-                    <label class="text-light" for="newlogin"></label>
-                    <td><input class="crtdedition" id="newlogin" type="text" name="newlogin" value="<?php echo $u['login']; ?>"></td>
-                    <label class="text-light" for="newmail"></label>
-                    <td><input class="crtdedition" id="newmail" type="mail" name="newmail" value="<?php echo $u['email']; ?>"></td>
-                    <td>
-                        <select name="select" id="select">
-                            <?php foreach ($lis as $key => $value) { ?>
-                                <option <?= $u['id_droits'] == $value['id'] ? "selected":NULL ?> value="<?= $value['id'] ?>"><?= $value['nom'] ?></option>
-                            <?php
-                            } ?>
+                  <input id="id" type="hidden" name="id" value="<?php echo $u['idutilisateur']; ?>">
+                  <label class="text-light" for="newlogin"></label>
+                  <td><input class="crtdedition" id="newlogin" type="text" name="newlogin" value="<?php echo $u['login']; ?>"></td>
+                  <label class="text-light" for="newmail"></label>
+                  <td><input class="crtdedition" id="newmail" type="mail" name="newmail" value="<?php echo $u['email']; ?>"></td>
+                  <td>
+                     <select name="select" id="select">
+                           <?php foreach ($lis as $key => $value) { ?>
+                              <option <?= $u['id_droits'] == $value['id'] ? "selected":NULL ?> value="<?= $value['id'] ?>"><?= $value['nom'] ?></option>
+                           <?php
+                           } ?>
+                           <!-- Boucle qui permet de savoir le rang de mon utilisateur -->
                         </select>
-                    </td>
-                    <td class=test><a class="btn btn-danger" href="admin.php?supprimer=<?= $u['idu'] ?>">Bannir</a></td>
-                    <td class=test><input id="" type="submit" class="btn btn-primary" name="submit" value="Confirmé !"></td>
-                </form>
-                </tr>
+                  </td>
+                  <td class=test><a class="btn btn-danger" href="admin.php?supprimer=<?= $u['idutilisateur'] ?>">Bannir</a></td>
+                  <td class=test><input id="" type="submit" class="btn btn-primary" name="submit" value="Confirmé !"></td>
+               </form>
+               </tr>
             <?php } ?>
-        </table>
-        <br>
+   </table>
+<br>
 
-        <br>
-        <?php
-        if (isset($msg)) {
-            echo '<font color="red">' . $msg . '</font><br /><br />';
-        }
-        ?>
-    </main>
-    <footer>
-        <?php
-        include_once('footer.php');
-        ?>
-    </footer>
+<br>
+   <?php
+      if (isset($msg)) {
+            echo '<font color="pink">' . $msg . '</font><br /><br />';
+      }
+   ?>
+  <a href="deconnexion"><input type="button" value="Déconnexion"></a>
+    <a href="creer-article.php"><input type="button" value="Crée article"></a>
+    <a href="editionarticle.php"><input type="button" value="Modifier article"></a>
+</main>
+   <footer>
+   <?php
+      include_once('footer.php');
+   ?>
+   </footer>
 </body>
 </head>
