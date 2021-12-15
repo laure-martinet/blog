@@ -265,10 +265,9 @@ footer{
 
 
 /* ARTICLES */
-.al_liste{
-}
+
 #al_articles{
-    background-color: rgb(37, 37, 37);
+    background-color: rgb(0, 0, 0);
     padding: 3%;
     border-radius: 5%;
     background-size: 20%; 
@@ -276,8 +275,24 @@ footer{
     /* display: flex; */
     justify-content: center;
     text-align: center;
+    margin: 5%;
 }
+.al_href{
+text-decoration: none;
+color: rgb(255, 255, 255);
+font-size: 200%;
 
+}
+#al_date{
+    color: #c75c5c;
+    font-size: 100%;
+    padding-left: 60%;
+}
+#al_article{
+    background-color: rgb(51, 50, 50);
+}
+.al_href:hover { color: rgb(111, 93, 230)
+}
 
 
 

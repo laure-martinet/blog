@@ -1,5 +1,21 @@
 <?php
 session_start();
+$bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+$bdd->query('SELECT * FROM articles ORDER BY date DESC LIMIT 0,5');
+
+$article_par_page = 3;
+$articles = $bdd->query('SELECT * FROM articles ORDER BY date DESC LIMIT 0,3');
+$articles_totales = $articles->rowCount();
+
+$pagestotales = ceil($articles_totales/$article_par_page);
+
+if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $pagestotales) {
+    $_GET['page'] = intval($_GET['page']);
+    $pageCourante = $_GET['page'];
+ } else {
+    $pageCourante = 1;
+ }
+ $depart = ($pageCourante-1)*$article_par_page;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,6 +35,16 @@ session_start();
         </header>
         <main id="al_main">
             <h1 id="al_h1"> Dernier articles mis en ligne</h1>
+            <?php
+             $articles = $bdd->query('SELECT * FROM articles ORDER BY id DESC LIMIT '.$depart.','.$article_par_page);
+             while($art = $articles->fetch()) {
+             ?>
+             <li><a class="al_href" href="article.php?id=<?= $art['id'] ?>"><?= $art['titre'] ?></a></li>
+             <i id="al_date"><?php echo $art['date']; ?></i>
+             <br /><br />
+             <?php
+             }
+             ?>
             <div class="rectangle"></div>
         </main>
         <footer>
