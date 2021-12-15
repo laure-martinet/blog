@@ -1,7 +1,32 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
+if(isset($_GET['id']) AND !empty($_GET['id'])){
+$getid = $_GET['id'];
 
+$recuparticle = $bdd->prepare('SELECT * FROM articles WHERE id = ?');
+$recuparticle->execute(array($getid));
+// TOUT CA PERMET DE RECUP L'ARTICLE DE L'ID UTILISATEUR
+if($recuparticle->rowCount() > 0){
+$articleInfos = $recuparticle->fetch();
+$titre = $articleInfos['titre'];
+$contenu = $articleInfos['article'];
+
+if(isset($_POST['Valider'])){
+$titre_saisie = htmlspecialchars($_POST['titre']);
+$contenu_saisie = htmlspecialchars($_POST['article']);
+
+$updatearticle = $bdd->prepare('UPDATE articles SET titre = ? AND article = ? WHERE id = ?');
+$updatearticle->execute(array($titre_saisie, $contenu_saisie, $getid));
+}
+}
+else{
+    echo "Aucun article trouvé";
+}
+}
+else{
+    echo "Aucun utilisateur trouver mgl";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,18 +42,22 @@ include_once('header.php');
 ?>
 </header>
 <main id="al_main">
+    <form id="form_inscription" method="POST">
   <div id="LMedition">
 <?php
 $recuparticle = $bdd->query('SELECT * FROM articles');
 while ($article = $recuparticle->fetch()){
     ?>
     <div class="article">
-        <h1><?= $article['titre']; ?></h1>
-        <p><?= $article['article']; ?></p>
+        <input type="text" name="titre"value="<?= $article['titre']; ?>">
+        <textarea name="contenu"><?= $article['article']; ?></textarea>
+
         <a href="supprimerarticle.php?id=<?= $article['id']; ?>">
         <button style="color:red;">Supprimer article</button>
+        <input type="submit" name="Valider">
         </a>
     </div>
+</form>
     <?php
 }
 ?>

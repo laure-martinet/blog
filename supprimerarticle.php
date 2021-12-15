@@ -10,12 +10,12 @@ $recuparticle->execute(array($getid));
 if($recuparticle->rowCount() > 0){
 $supparticle = $bdd->prepare('DELETE FROM articles WHERE id = ?');
 $supparticle->execute(array($getid));
-header('location: admin.php');
+header('location: editionarticle.php');
 exit();
 }
 else{
     echo "Aucun article n'a été trouvé ma couille !";
-    header('location: admin.php');
+    header('location: editionarticle.php');
 exit();
 }
 }
