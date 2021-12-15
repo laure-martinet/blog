@@ -2,7 +2,7 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
 
-$utilisateurs = $bdd->query('SELECT utilisateurs.`id` as id, `login`, `password`, `email`, `id_droits`,`nom` FROM `utilisateurs` INNER JOIN droits ON droits.id = utilisateurs.id_droits ORDER BY utilisateurs.id ASC;');
+$utilisateurs = $bdd->query('SELECT utilisateurs.`id` as idutilisateur, `login`, `password`, `email`, `id_droits`,`nom` FROM `utilisateurs` INNER JOIN droits ON droits.id = utilisateurs.id_droits ORDER BY utilisateurs.id ASC;');
 $listedroits = $bdd->query('SELECT * FROM droits');
 $lis = $listedroits->fetchAll();
 
@@ -103,7 +103,7 @@ if (isset($_POST['select'])) {
             <?php while ($u = $utilisateurs->fetch()) { ?>
                <form id="form_inscription" method="POST">
 
-                  <input id="id" type="hidden" name="id" value="<?php echo $u['idu']; ?>">
+                  <input id="id" type="hidden" name="id" value="<?php echo $u['idutilisateur']; ?>">
                   <label class="text-light" for="newlogin"></label>
                   <td><input class="crtdedition" id="newlogin" type="text" name="newlogin" value="<?php echo $u['login']; ?>"></td>
                   <label class="text-light" for="newmail"></label>
@@ -114,9 +114,10 @@ if (isset($_POST['select'])) {
                               <option <?= $u['id_droits'] == $value['id'] ? "selected":NULL ?> value="<?= $value['id'] ?>"><?= $value['nom'] ?></option>
                            <?php
                            } ?>
+                           <!-- Boucle qui permet de savoir le rang de mon utilisateur -->
                         </select>
                   </td>
-                  <td class=test><a class="btn btn-danger" href="admin.php?supprimer=<?= $u['id'] ?>">Bannir</a></td>
+                  <td class=test><a class="btn btn-danger" href="admin.php?supprimer=<?= $u['idutilisateur'] ?>">Bannir</a></td>
                   <td class=test><input id="" type="submit" class="btn btn-primary" name="submit" value="Confirmé !"></td>
                </form>
                </tr>

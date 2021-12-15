@@ -24,13 +24,14 @@ while ($article = $recuparticle->fetch()){
     ?>
     <div class="article">
         <h1><?= $article['titre']; ?></h1>
-        <br>
         <p><?= $article['article']; ?></p>
+        <a href="supprimerarticle.php?id=<?= $article['id']; ?>">
+        <button style="color:red;">Supprimer article</button>
+        </a>
     </div>
     <?php
 }
 ?>
-    <a href="deconnexion"><input type="button" value="Déconnexion"></a>
   </div>
   </main>
   <footer>
