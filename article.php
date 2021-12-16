@@ -46,6 +46,8 @@ if (isset($_GET['supprimer']) && !empty($_GET['supprimer'])) {
     $supprimer = (int) $_GET['supprimer'];
     $req = $bdd->prepare('DELETE FROM commentaires WHERE id = ?');
     $req->execute(array($supprimer));
+    header("location: article.php?id=<?= $getid ?>");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -83,9 +85,9 @@ if (isset($_GET['supprimer']) && !empty($_GET['supprimer'])) {
                         <?php }
                             else {
                                 echo "<p class='lr_error'>Vous devez être connecté pour poster !<br><a class='lr_error' href='connexion.php'>Connectez-vous ici</a></p>";
+                            }
                         ?>
-                        <?php
-                        } ?>
+                        
                             <!-- Message d'erreurs -->
                             <div id="lr_position_comm">
                                 <div class="lr_error">
@@ -100,7 +102,7 @@ if (isset($_GET['supprimer']) && !empty($_GET['supprimer'])) {
                                 Créée le <?php echo $c['date'] ;?><br>
                                 <p id="lr_commentaire_1"><?= $c['commentaire'] ?></p><br/>
                                 <!-- Bouton pour supprimer commentaires -->
-                                <td class=test><a class="btn btn-danger" name="supprimer" href="article.php?id=<?= $getid ?>">Supprimer</a></td>
+                                <a input type="submit" class="btn btn-danger" value="supprimer" name="supprimer">Supp</a>
                                 
                                 
                                 <!-- SI PAS DE COMMENTAIRES, MESSAGE  -->
