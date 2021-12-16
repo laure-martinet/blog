@@ -1,6 +1,7 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
+
 if(isset($_GET['id']) AND !empty($_GET['id'])){
 $getid = $_GET['id'];
 
@@ -20,13 +21,8 @@ $updatearticle = $bdd->prepare('UPDATE articles SET titre = ? AND article = ? WH
 $updatearticle->execute(array($titre_saisie, $contenu_saisie, $getid));
 }
 }
-else{
-    echo "Aucun article trouvé";
 }
-}
-else{
-    echo "Aucun utilisateur trouver mgl";
-}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,13 +45,12 @@ $recuparticle = $bdd->query('SELECT * FROM articles');
 while ($article = $recuparticle->fetch()){
     ?>
     <div class="article">
-        <input type="text" name="titre"value="<?= $article['titre']; ?>">
-        <textarea name="contenu"><?= $article['article']; ?></textarea>
+    <input type="text" name="article_titre" placeholder="Titre"value="<?= $article['titre'] ?>" />
 
-        <a href="supprimerarticle.php?id=<?= $article['id']; ?>">
-        <button style="color:red;">Supprimer article</button>
+      <textarea name="article_contenu" placeholder="Contenu de l'article"><?= $article['article'] ?></textarea>
+
+        <a href="supprimerarticle.php?id=<?= $article['id'] ?>">Supprimer</a>
         <input type="submit" name="Valider">
-        </a>
     </div>
 </form>
     <?php

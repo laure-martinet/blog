@@ -43,39 +43,37 @@ if (isset($_SESSION['login']) != 1337 || isset($_SESSION['login']) != 42) // ID 
     }
 
 ?>
-    <!DOCTYPE html>
-    <html lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Créer un article</title>
+</head>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <title>Créer un article</title>
-    </head>
-
-    <body id="al_body">
-        <header>
-            <?php
-                include_once('header.php');
-            ?>
-        </header>
-        <main id="al_main">
-            <form id="form_inscription" method="POST">
-                <p class="text-light"> Votre pseudo : <?php echo $infoutilisateur['login'] ?></p><br><br>
-                <input type="text" placeholder="Titre" name="titre" id="titre" value="<?php if (isset($titre)) {
-                                                                                            echo $titre;
-                                                                                        } ?>"><br><br>
-                <select name="select" id="select">
-                    <?php while ($lis = $listecate->fetch()) { ?>
-
-                        <option><?= $lis['nom'] ?></option>
-                    <?php } ?>
+<body id="al_body">
+    <header>
+        <?php
+            include_once('header.php');
+        ?>
+    </header>
+    <main id="al_main">
+        <form id="form_inscription" method="POST">
+            <p class="text-light"> Votre pseudo : <?php echo $infoutilisateur['login'] ?></p><br><br>
+            <input type="text" placeholder="Titre" name="titre" id="titre" value="<?php if (isset($titre)) {
+                echo $titre;
+            } ?>"><br><br>
+            <select name="select" id="select">
+                <?php while ($lis = $listecate->fetch()) { ?>
+                    <option><?= $lis['nom'] ?></option>
+                <?php } ?>
                 </select><br><br>
 
                 <textarea name="article" placeholder="Votre article..." value="<?php if (isset($article)) {
-                                                                                    echo $article;
-                                                                                } ?>" style="width: 300px; height: 100px"></textarea><br /><br>
+                    echo $article;
+                } ?>" style="width: 300px; height: 100px"></textarea><br /><br>
                 <input type="submit" value="Poster mon article" name="submit_article" />
             </form>
             <br>
@@ -89,11 +87,7 @@ if (isset($_SESSION['login']) != 1337 || isset($_SESSION['login']) != 42) // ID 
             ?>
         </footer>
     </body>
-
     </html>
-
-    </html>
-
 <?php
 }
 ?>
