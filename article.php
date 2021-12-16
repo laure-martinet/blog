@@ -42,14 +42,14 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
 $commentaires = $bdd->query('SELECT * FROM commentaires INNER JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id ORDER BY date DESC');
 
 //Supprimer un commentaire
-if (isset($_GET['supprimer']) && !empty($_GET['supprimer'])) {
-    $supprimer = (int) $_GET['supprimer'];
-    $req = $bdd->prepare('DELETE FROM commentaires WHERE id = ?');
-    $req->execute(array($supprimer));
-    header("location: article.php?id=<?= $getid ?>");
-    exit();
-}
-?>
+// if (isset($_GET['supprimer']) && !empty($_GET['supprimer'])) {
+//     $supprimer = (int) $_GET['supprimer'];
+//     $req = $bdd->prepare('DELETE FROM commentaires WHERE id = ?');
+//     $req->execute(array($supprimer));
+    // header("location: article.php?id=<?= $getid ?>");
+<!-- //     exit();
+// }
+// ?> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,12 +88,12 @@ if (isset($_GET['supprimer']) && !empty($_GET['supprimer'])) {
                             }
                         ?>
                         
-                            <!-- Message d'erreurs -->
+                        <!-- Message d'erreurs -->
                             <div id="lr_position_comm">
                                 <div class="lr_error">
                                     <?php if(isset($c_msg)) { echo $c_msg; } ?><br /><br />
                                 </div>
-                                <!-- // Affichage des commentaires de l'article -->
+                        <!-- // Affichage des commentaires de l'article -->
                                 <?php 
                                 while($c = $commentaires->fetch()) { 
                                     if($c['id_article']==$get_id){ 
@@ -101,11 +101,19 @@ if (isset($_GET['supprimer']) && !empty($_GET['supprimer'])) {
                                 ?><br>
                                 Créée le <?php echo $c['date'] ;?><br>
                                 <p id="lr_commentaire_1"><?= $c['commentaire'] ?></p><br/>
-                                <!-- Bouton pour supprimer commentaires -->
-                                <a input type="submit" class="btn btn-danger" value="supprimer" name="supprimer">Supp</a>
-                                
-                                
-                                <!-- SI PAS DE COMMENTAIRES, MESSAGE  -->
+
+                        <!-- Bouton pour supprimer commentaires -->
+                                <?php /*
+                                    if(!empty($_SESSION['id'])){                            
+                                        if (($_SESSION['login']) == ($c['login'])) {?>
+                                            <input type="submit" name="Valider"><?php 
+                                        } else { ?>
+                                            <div id= "suppressions"><a href= "supprimer.php?commentaireUtilisateur=<?=$c['id']?>#scroll"></a></div><?php 
+                                        }*/
+                                    }?>           
+
+                                    
+                        <!-- SI PAS DE COMMENTAIRES, MESSAGE  -->
                                 <?php /*
                                 $count = "SELECT COUNT(id) FROM commentaires WHERE id_article = '$getid'";
                                 $bdd->query($count);
@@ -113,7 +121,7 @@ if (isset($_GET['supprimer']) && !empty($_GET['supprimer'])) {
                                 echo "Pas de commentaires" ;
                                 var_dump($count);
                                 } */ ?>
-                                        <?php } 
+                                        <?php  
                                     }?>
                                 </div>
                             </div>
