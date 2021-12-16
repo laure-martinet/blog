@@ -19,11 +19,11 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
             // ESPACE COMMENTAIRES
                 if(isset($_GET['id']) AND !empty($_GET['id'])) {
                     $getid = intval($_GET['id']);
-                    $getid_u = intval($_SESSION['id']);
                     if(isset($_POST['submit_commentaire'])) {
                         if(isset($_POST['commentaire']) AND !empty($_POST['commentaire'])) {
                             $commentaire = htmlspecialchars($_POST['commentaire']);
                             if(intval($getid) > 0) {
+                                $getid_u = intval($_SESSION['id']);
                                 $ins = $bdd->prepare('INSERT INTO commentaires (commentaire, id_article, id_utilisateur, date) VALUES(?,?,?,NOW())');
                                 $ins->execute(array($commentaire, $getid, $getid_u));
                                 $c_msg = "<span class='lr_message'>Votre commentaire a bien été posté</span>";
