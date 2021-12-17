@@ -62,11 +62,11 @@ else{
 
 // Supprimer un commentaire
 if (isset($_GET['supprimer']) && !empty($_GET['supprimer'])) {
-    $supprimer = (int) $_GET['supprimer'];
+    $supprimer = (int) $_GET['supprimer']; 
     $req = $bdd->prepare('DELETE FROM commentaires WHERE id = ?');
     $req->execute(array($supprimer));
-    header("location: article.php?id=<?= $getid"); 
-     exit();
+    header("location: article.php?id=<?= $get_id"); 
+    exit();
 }
 
 ?>
@@ -125,21 +125,20 @@ if (isset($_GET['supprimer']) && !empty($_GET['supprimer'])) {
                                 <?php 
                                     if(!empty($_SESSION['id'])){                            
                                         if (($_SESSION['login']) == ($c['login'])) {?>
-                                            <input type="submit" name="Valider"><?php 
-                                        } else { ?>
-                                            <div id= "suppressions"><a href= "supprimer.php?commentaireUtilisateur=<?=$c['id']?>#scroll"></a></div><?php 
+                                            <!-- <input type="submit" name="Valider"> -->
+                                            <div><a href= "articles.php?supprimer=<?= $c['id'] ?>">suppr</a></div><?php 
+                                        } else { ?> <?php
                                         } 
                                     }
                                 }?>           
 
-                                    
                         <!-- SI PAS DE COMMENTAIRES, MESSAGE  -->
                                 <?php 
                                 $count = "SELECT COUNT(id) FROM commentaires WHERE id_article = '$getid'";
                                 $bdd->query($count);
                                 if(isset($count)==0){ 
                                 echo "Pas de commentaires" ;
-                                }  ?>                                var_dump($count);
+                                }  ?>                              
 
                                         <?php  
                                     }?>
