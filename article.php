@@ -134,11 +134,14 @@ if (isset($_GET['supprimer']) && !empty($_GET['supprimer'])) {
 
                         <!-- SI PAS DE COMMENTAIRES, MESSAGE  -->
                                 <?php 
-                                $count = "SELECT COUNT(id) FROM commentaires WHERE id_article = '$getid'";
-                                $bdd->query($count);
-                                if(isset($count)==0){ 
-                                echo "Pas de commentaires" ;
-                                }  ?>                              
+                                // $res = $bdd->query('SELECT COUNT(id) FROM commentaires WHERE id = ? ');
+                                // $bdd->prepare($get_id);
+                                // $data = $res->fetch();
+                                // $nb = $data['nb'];
+                                // if(isset($nb)==0){ 
+                                // echo "Pas de commentaires" ;
+                                // }  
+                                ?>                              
 
                                         <?php  
                                     }?>
