@@ -15,15 +15,15 @@
         </div> 
         <ul class="lr_ul_header">
             <?php 
-            if($_SESSION['id_droits'] == 0){
+            if($_SESSION['id_droits'] == 1){
             ?>
                 <li ><a class="lr_li_header" href="index.php">Accueil</a></li> 
                 <div class="dropdown">
                     <nav class="boutonmenuprincipal">Catégories</nav>
                     <div class="dropdown-child">
-                    <a href="articles.php">Assassin's Creed</a>
-                    <a href="articles.php">World of Warcraft</a>
-                    <a href="articles.php">The Last of Us</a>
+                    <a href="articles.php?id_categorie=1">Assassin's Creed</a>
+                    <a href="articles.php?id_categorie=2">World of Warcraft</a>
+                    <a href="articles.php?id_categorie=3">The Last of Us</a>
                     </div>
                 </div>
                 <li ><a class="lr_li_header" href="profil.php">Profil</a></li>
@@ -36,9 +36,9 @@
                 <div class="dropdown">
                     <nav class="boutonmenuprincipal">Catégories</nav>
                     <div class="dropdown-child">
-                    <a href="articles.php">Assassin's Creed</a>
-                    <a href="articles.php">World of Warcraft</a>
-                    <a href="articles.php">The Last of Us</a>
+                    <a href="articles.php?id_categorie=1">Assassin's Creed</a>
+                    <a href="articles.php?id_categorie=2">World of Warcraft</a>
+                    <a href="articles.php?id_categorie=3">The Last of Us</a>
                     </div>
                 </div>                
                 <li ><a class="lr_li_header" href="creer-article.php">Créer Article</a>
@@ -51,9 +51,9 @@
                 <div class="dropdown">
                     <nav class="boutonmenuprincipal">Catégories</nav>
                     <div class="dropdown-child">
-                    <a href="articles.php">Assassin's Creed</a>
-                    <a href="articles.php">World of Warcraft</a>
-                    <a href="articles.php">The Last of Us</a>
+                    <a href="articles.php?id_categorie=1">Assassin's Creed</a>
+                    <a href="articles.php?id_categorie=2">World of Warcraft</a>
+                    <a href="articles.php?id_categorie=3">The Last of Us</a>
                     </div>
                 </div>    
                 <li ><a class="lr_li_header" href="creer-article.php">Créer Article</a></li>
@@ -77,9 +77,9 @@
             <div class="dropdown">
                     <nav class="boutonmenuprincipal">Catégories</nav>
                     <div class="dropdown-child">
-                    <a href="articles.php">Assassin's Creed</a>
-                    <a href="articles.php">World of Warcraft</a>
-                    <a href="articles.php">The Last of Us</a>
+                    <a href="articles.php?id_categorie=1">Assassin's Creed</a>
+                    <a href="articles.php?id_categorie=2">World of Warcraft</a>
+                    <a href="articles.php?id_categorie=3">The Last of Us</a>
                     </div>
                 </div>
             <li ><a class="lr_li_header" href="inscription.php"> Inscription</a></li>

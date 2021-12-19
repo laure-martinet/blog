@@ -41,41 +41,34 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
 //Afficher les commentaires de l'article sélectionné et INNER JOIN pour pouvoir afficher le pseudo de l'utilisateur avec son commentaire
 $commentaires = $bdd->query('SELECT * FROM commentaires  INNER JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id ORDER BY commentaires.date DESC');
 
+//Afficher catégorie 
+$categorie = $bdd->prepare('SELECT id_categorie FROM articles WHERE id = ?');
+$categorie->execute(array($get_id));
 
-// $categorie = $bdd->query('SELECT * FROM articles WHERE id_categorie = ?');
+while($cat = $categorie->fetch()) { 
+if($cat['id_categorie']==1){ 
+    $msg_cat = "Assassin's Creed";
+}
+elseif($cat['id_categorie']==2){
+    $msg_cat = "World of Warcraft";
+}
+elseif($cat['id_categorie']==3){
+    $msg_cat = "The Last of Us";
+}
+else{
+    $msg_cat = "Cet article n'a pas de catégorie";
+}
+}
 
+// Supprimer un commentaire
+if (isset($_GET['supprimer']) && !empty($_GET['supprimer'])) {
+    $supprimer = (int) $_GET['supprimer']; 
+    $req = $bdd->prepare('DELETE FROM commentaires WHERE id = ?');
+    $req->execute(array($supprimer));
+    header("location: article.php?id=<?= $get_id"); 
+    exit();
+}
 
-// while($cat = $commentaires->fetch()) { 
-// if($cat['id_categorie']==1){ 
-//     $msg_cat = "Assassin's Creed";
-// }
-// elseif($cat['id_categorie']==2){
-//     $msg_cat = "World of Warcraft";
-// }
-// elseif($cat['id_categorie']==3){
-//     $msg_cat = "The Last of Us";
-// }
-// else{
-//     $msg_cat = "Cet article n'a pas de catégorie";
-// }
-// var_dump($cat['id_categorie']);
-// }
-
-// $categorie = $bdd->query('SELECT * FROM articles WHERE id = ?');
-// $categorie->execute(array($get_id));
-// var_dump ($articles['id_categorie';
-
-//  Afficher categorie 
-
-//Supprimer un commentaire
-// if (isset($_GET['supprimer']) && !empty($_GET['supprimer'])) {
-//     $supprimer = (int) $_GET['supprimer'];
-//     $req = $bdd->prepare('DELETE FROM commentaires WHERE id = ?');
-//     $req->execute(array($supprimer));
-    // header("location: article.php?id=<?= $getid 
- //     exit();
-// }
-// 
 ?>
 <!DOCTYPE html>
 <html>
@@ -95,9 +88,8 @@ $commentaires = $bdd->query('SELECT * FROM commentaires  INNER JOIN utilisateurs
 <main>
     <div id="deplacement_article"> 
         <div id="lr_article">     
-            <!-- <p class="lr_text">Catégorie :  --><?php /*
-            echo $msg_cat; */
-            // echo $article['id_categorie'] ;
+            <p class="lr_text">Catégorie : <?php 
+            echo $msg_cat; 
             ?></p>
             <p class="lr_text">Créée le <?php echo $article['date'] ;?></p>
             <h1 id="lr_titre_article"><?= $titre ?></h1>
@@ -115,7 +107,6 @@ $commentaires = $bdd->query('SELECT * FROM commentaires  INNER JOIN utilisateurs
                                 echo "<p class='lr_error'>Vous devez être connecté pour poster !<br><a class='lr_error' href='connexion.php'>Connectez-vous ici</a></p>";
                             }
                         ?>
-                        
                         <!-- Message d'erreurs -->
                             <div id="lr_position_comm">
                                 <div class="lr_error">
@@ -131,24 +122,27 @@ $commentaires = $bdd->query('SELECT * FROM commentaires  INNER JOIN utilisateurs
                                 <p id="lr_commentaire_1"><?= $c['commentaire'] ?></p><br/>
 
                         <!-- Bouton pour supprimer commentaires -->
-                                <?php /*
+                                <?php 
                                     if(!empty($_SESSION['id'])){                            
                                         if (($_SESSION['login']) == ($c['login'])) {?>
-                                            <input type="submit" name="Valider"><?php 
-                                        } else { ?>
-                                            <div id= "suppressions"><a href= "supprimer.php?commentaireUtilisateur=<?=$c['id']?>#scroll"></a></div><?php 
-                                        }*/
-                                    }?>           
+                                            <!-- <input type="submit" name="Valider"> -->
+                                            <div><a href= "articles.php?supprimer=<?= $c['id'] ?>">suppr</a></div><?php 
+                                        } else { ?> <?php
+                                        } 
+                                    }
+                                }?>           
 
-                                    
                         <!-- SI PAS DE COMMENTAIRES, MESSAGE  -->
-                                <?php /*
-                                $count = "SELECT COUNT(id) FROM commentaires WHERE id_article = '$getid'";
-                                $bdd->query($count);
-                                if(isset($count)==0){ 
-                                echo "Pas de commentaires" ;
-                                var_dump($count);
-                                } */ ?>
+                                <?php 
+                                // $res = $bdd->query('SELECT COUNT(id) FROM commentaires WHERE id = ? ');
+                                // $bdd->prepare($get_id);
+                                // $data = $res->fetch();
+                                // $nb = $data['nb'];
+                                // if(isset($nb)==0){ 
+                                // echo "Pas de commentaires" ;
+                                // }  
+                                ?>                              
+
                                         <?php  
                                     }?>
                                 </div>
