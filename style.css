@@ -80,13 +80,12 @@
 #al_h1{
     color: aliceblue;
     display: flex;
-    padding-left: 35%;
+    justify-content: center;
+    /* padding-left: 35%; */
     padding-top: 2%;
-    position: absolute;
-    font-size: 300%;
-    z-index: 100;
+    padding-bottom: 4%;
+    font-size: 200%;
 }
-
 
 
 /* FOOTER  */
