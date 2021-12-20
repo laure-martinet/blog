@@ -24,7 +24,7 @@ if (isset($_GET['supprimercateg']) && !empty($_GET['supprimercateg'])) {
     $supprimercateg = (int) $_GET['supprimercateg'];
     $reqc = $bdd->prepare('DELETE FROM categories WHERE id = ?');
     $reqc->execute(array($supprimercateg));
-    header("Location: admin.php");
+    header("Location: editionarticle.php");
     exit();
 }
 
@@ -44,7 +44,7 @@ if (isset($_POST['creercateg']) && !empty($_POST['creercateg'])) {
         $creercategorie = htmlspecialchars($_POST['creercateg']);
         $insertcateg = $bdd->prepare("INSERT INTO categories (nom) VALUES (?)");
         $insertcateg->execute(array($creercategorie));
-        header('Location: admin.php');
+        header('Location: editionarticle.php');
         exit();
     }
 }
@@ -64,7 +64,7 @@ if (isset($_POST['newcateg']) && !empty($_POST['newcateg'])) {
         $newcategorie = htmlspecialchars($_POST['newcateg']);
         $insertcateg = $bdd->prepare("UPDATE categories SET nom = ? WHERE id = ?");
         $insertcateg->execute(array($newcategorie, $idchange));
-        header('Location: admin.php');
+        header('Location: editionarticle.php');
         exit();
     }
 }
