@@ -61,6 +61,8 @@ $depart = ($pageCourante - 1) * $article_par_page;
         ?>
         <a href="?id_categorie=<?php echo $i - 1; ?>">Page précédente</a>
         <a href="?id_categorie=<?php echo $i ++; ?>">Page suivante</a>
+        <
+        <
     </main>
     <footer>
         <?php
