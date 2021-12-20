@@ -1,3 +1,8 @@
+<?php 
+$bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+$listecat = $bdd->query('SELECT * FROM categories');
+$categories = $listecat->fetchAll();
+?>
 <html> 
     <head>
         <meta charset="utf-8">
@@ -21,9 +26,11 @@
                 <div class="dropdown">
                     <nav class="boutonmenuprincipal">Catégories</nav>
                     <div class="dropdown-child">
-                    <a href="articles.php?id_categorie=1">Assassin's Creed</a>
-                    <a href="articles.php?id_categorie=2">World of Warcraft</a>
-                    <a href="articles.php?id_categorie=3">The Last of Us</a>
+                        <?php
+                        foreach($categories as $categorie){
+                            echo '<a href="articles.php?id_categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
+                        }
+                        ?>
                     </div>
                 </div>
                 <li ><a class="lr_li_header" href="profil.php">Profil</a></li>
@@ -36,9 +43,11 @@
                 <div class="dropdown">
                     <nav class="boutonmenuprincipal">Catégories</nav>
                     <div class="dropdown-child">
-                    <a href="articles.php?id_categorie=1">Assassin's Creed</a>
-                    <a href="articles.php?id_categorie=2">World of Warcraft</a>
-                    <a href="articles.php?id_categorie=3">The Last of Us</a>
+                    <?php
+                        foreach($categories as $categorie){
+                            echo '<a href="articles.php?id_categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
+                        }
+                        ?>
                     </div>
                 </div>                
                 <li ><a class="lr_li_header" href="creer-article.php">Créer Article</a>
@@ -51,9 +60,11 @@
                 <div class="dropdown">
                     <nav class="boutonmenuprincipal">Catégories</nav>
                     <div class="dropdown-child">
-                    <a href="articles.php?id_categorie=1">Assassin's Creed</a>
-                    <a href="articles.php?id_categorie=2">World of Warcraft</a>
-                    <a href="articles.php?id_categorie=3">The Last of Us</a>
+                    <?php
+                        foreach($categories as $categorie){
+                            echo '<a href="articles.php?id_categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
+                        }
+                        ?>
                     </div>
                 </div>    
                 <li ><a class="lr_li_header" href="creer-article.php">Créer Article</a></li>
@@ -77,9 +88,11 @@
             <div class="dropdown">
                     <nav class="boutonmenuprincipal">Catégories</nav>
                     <div class="dropdown-child">
-                    <a href="articles.php?id_categorie=1">Assassin's Creed</a>
-                    <a href="articles.php?id_categorie=2">World of Warcraft</a>
-                    <a href="articles.php?id_categorie=3">The Last of Us</a>
+                    <?php
+                        foreach($categories as $categorie){
+                            echo '<a href="articles.php?id_categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
+                        }
+                        ?>
                     </div>
                 </div>
             <li ><a class="lr_li_header" href="inscription.php"> Inscription</a></li>
