@@ -8,9 +8,9 @@ $articles_totales = $articles->rowCount();
 
 $pagestotales = ceil($articles_totales / $article_par_page);
 
-if (isset($_GET['page']) and !empty($_GET['page']) and $_GET['page'] > 0 and $_GET['page'] <= $pagestotales) {
-    $_GET['page'] = intval($_GET['page']);
-    $pageCourante = $_GET['page'];
+if (isset($_GET['id_categorie']) and !empty($_GET['id_categorie']) and $_GET['id_categorie'] > 0 and $_GET['id_categorie'] <= $pagestotales) {
+    $_GET['id_categorie'] = intval($_GET['id_categorie']);
+    $pageCourante = $_GET['id_categorie'];
 } else {
     $pageCourante = 1;
 }
@@ -35,7 +35,7 @@ $depart = ($pageCourante - 1) * $article_par_page;
     </header>
     <main id=al_articles>
         <?php
-        $articles = $bdd->query('SELECT * FROM articles ORDER BY id DESC LIMIT ' . $depart . ',' . $article_par_page);
+        $articles = $bdd->query('SELECT * FROM articles ORDER BY date DESC LIMIT ' . $depart . ',' . $article_par_page);
         while ($art = $articles->fetch()) {
         ?>
             <div id="al_article">
@@ -47,20 +47,20 @@ $depart = ($pageCourante - 1) * $article_par_page;
         }
         ?>
         <?php
-        $i = 1;
-        while( $i <= $pagestotales) {
+       
+        for($i=1; $i<= $pagestotales; $i++) {
             if ($i == $pageCourante) {
                 echo $i . '' ;
-                $i++;
-            }
-            // else {
+                
 
-            //     echo '<a href="articles.php?page=' . $i . '">' . $i . '</a> ';
-            // }
+            }
+            else {
+                // echo '<a href="articles.php?p=' . $i . '">' . $i . '</a> ';
+            }
         }
         ?>
-        <a href="?page=<?php echo $i - 1; ?>">Page précédente</a>
-        <a href="?page=<?php echo $i ++; ?>">Page suivante</a>
+        <a href="?id_categorie=<?php echo $i - 1; ?>">Page précédente</a>
+        <a href="?id_categorie=<?php echo $i ++; ?>">Page suivante</a>
     </main>
     <footer>
         <?php
