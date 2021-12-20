@@ -14,7 +14,7 @@
             <a class="btn btn-secondary btn-lg" href="profil.php"> Profil</a>
             <a class="btn btn-secondary btn-lg" href="articles.php"> Ensembles articles</a>
             <a class="btn btn-secondary btn-lg" href="creer-article.php"> Créer un article</a>
-            <a class="btn btn-secondary btn-lg" href="article.php"> Voir articles et comms</a>
+            <a class="btn btn-secondary btn-lg" href="article.php?id=1"> Voir articles et comms</a>
         </div>
     </div>
     <div id="imagegithub">
