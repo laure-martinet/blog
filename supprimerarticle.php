@@ -14,7 +14,7 @@ header('location: editionarticle.php');
 exit();
 }
 else{
-    echo "Aucun article n'a été trouvé ma couille !";
+    echo "Aucun article n'a été trouvé !";
     header('location: editionarticle.php');
 exit();
 }
