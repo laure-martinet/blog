@@ -1,4 +1,4 @@
-/* HEADER  */
+                                                    /* HEADER  */
 
 *{
     padding: 0;
@@ -54,7 +54,7 @@
 
 
 
-/* INDEX */
+                                                    /* INDEX */
 
 #al_body{
     background-image: url(../blog/medias/floryn.jpg);
@@ -81,7 +81,6 @@
     color: aliceblue;
     display: flex;
     justify-content: center;
-    /* padding-left: 35%; */
     padding-top: 2%;
     padding-bottom: 4%;
     font-size: 200%;
@@ -89,8 +88,9 @@
 
 
 /* FOOTER  */
-footer{
+#footerbox{
     background-color: rgb(12, 11, 11);
+    padding: 3%;
 }
 #imagegithub{
     margin-left: 90%;
@@ -103,7 +103,7 @@ footer{
 
 
 
-/* INSCRIPTION */
+                                                    /* INSCRIPTION */
 .lr_h2{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
@@ -149,18 +149,14 @@ footer{
 
 
 
-/* CONNEXION */
+                                                    /* CONNEXION */
 #titreLM{
     color: rgb(248, 168, 255);
     background-color: rgb(76, 50, 245);
     margin-top: 4%;
     border-radius: 8px;
 }
-#LMtitrediv{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+
 #connexion{
     font-size: 170%;
     display: flex;
@@ -176,13 +172,13 @@ footer{
 
 
 
-/* PROFIL */
+                                                    /* PROFIL */
 
 
 
 
 
-/* ADMIN */
+                                                    /* ADMIN */
 #LMadmin{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
@@ -192,12 +188,21 @@ footer{
         font-size: 150%;
         text-align: center;
 }
+.text_admin{
+    padding-left: 2%;
+}
+.LM_color_text{
+    color: white;
+    padding-top: 2%;
+}
+#div_admin{
+padding-left: 10%;
+}
 
 
 
 
-
-/* ARTICLE  */
+                                                    /* ARTICLE  */
 
     #deplacement_article{
         display: flex;
@@ -209,6 +214,7 @@ footer{
     #lr_article{
         background-color: rgb(37, 37, 37);
         padding: 3%;
+        min-width: 100%;
         border-radius: 1%;
         font-size: 150%;
         text-align: left;
@@ -225,7 +231,7 @@ footer{
         color: rgb(165, 155, 255);
     } 
 
-        /* commentaire*/
+                /* commentaire*/
 
 #lr_espace_commentaire{
     background-color: rgb(87, 87, 87);
@@ -262,7 +268,7 @@ footer{
 }
 
 
-/* ARTICLES */
+                                                    /* ARTICLES */
 
 #al_articles{
     background-color: rgb(0, 0, 0);
@@ -294,4 +300,4 @@ font-size: 200%;
 
 
 
-/* CREER ARTICLES  */
+                                                    /* CREER ARTICLES  */
