@@ -11,7 +11,7 @@
             <a class="btn btn-secondary btn-lg" href="inscription.php"> Inscription</a>
             <a class="btn btn-secondary btn-lg" href="connexion.php"> Connexion</a>
             <a class="btn btn-secondary btn-lg" href="profil.php"> Profil</a>
-            <a class="btn btn-secondary btn-lg" href="articles.php?page=1"> Ensembles articles</a>
+            <a class="btn btn-secondary btn-lg" href="articles.php?categorie=1&page=1"> Ensembles articles</a>
             <a class="btn btn-secondary btn-lg" href="creer-article.php"> Créer un article</a>
             <a class="btn btn-secondary btn-lg" href="article.php?id=1"> Voir articles et comms</a>
             <a href="https://github.com/laure-martinet/blog.git"><img src="medias/unnamed-removebg-preview.png" height="60px" width="60px"></a>

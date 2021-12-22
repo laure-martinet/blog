@@ -60,7 +60,7 @@ $articles=$query->fetchAll(PDO::FETCH_ASSOC);
         <nav id= al_boutonart >
             <ul class="pagination">
                 <li class="btn btn-secondary btn-lg <?=($pageCourante == 1) ? "disabled" :"" ?>">
-                    <a href="articles.php?page=<?= $pageCourante-1 ?>" class="btn btn-secondary btn-lg">Précédente</a>
+                    <a href="articles.php?categorie=<?= $article['id_categorie']?>&page=<?= $pageCourante-1 ?>" class="btn btn-secondary btn-lg">Précédente</a>
                 </li> &emsp;
                 <?php for($page = 1; $page <= $pagestotales; $page++): ?>
                             <li class="btn btn-secondary btn-lg <?= ($currentPage == $page) ? "active" : "" ?>">
@@ -68,7 +68,7 @@ $articles=$query->fetchAll(PDO::FETCH_ASSOC);
                             </li>
                         <?php endfor ?>&emsp;
                 <li class="btn btn-secondary btn-lg <?=($pageCourante==$pagestotales) ? "disabled" :"" ?>">
-                    <a href="articles.php?page=<?= $pageCourante+1 ?>" class="btn btn-secondary btn-lg">Suivante</a>
+                    <a href="articles.php?categorie=<?= $article['id_categorie']?>&page=<?= $pageCourante+1 ?>" class="btn btn-secondary btn-lg">Suivante</a>
                 </li>
             </ul>
         </nav>
