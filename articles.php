@@ -20,7 +20,6 @@ $article_par_page=5;
 $pagestotales = ceil($nbArticles / $article_par_page);
 $debut=($pageCourante*$article_par_page)-$article_par_page;
 
-// $sql='SELECT * FROM articles ORDER BY date DESC LIMIT :debut, :article_par_page;';
 $sql='SELECT * FROM articles INNER JOIN categories ON articles.id_categorie = categories.id WHERE id_categorie = :id_categorie ORDER BY date DESC LIMIT :debut, :article_par_page;';
 $query=$bdd->prepare($sql);
 $query-> bindValue(':debut', $debut, PDO ::PARAM_INT);
