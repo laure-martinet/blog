@@ -28,7 +28,7 @@ $categories = $listecat->fetchAll();
                     <div class="dropdown-child">
                         <?php
                         foreach($categories as $categorie){
-                            echo '<a href="articles.php?id_categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
+                            echo '<a href="articles.php?categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
                         }
                         ?>
                     </div>
@@ -45,7 +45,7 @@ $categories = $listecat->fetchAll();
                     <div class="dropdown-child">
                     <?php
                         foreach($categories as $categorie){
-                            echo '<a href="articles.php?id_categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
+                            echo '<a href="articles.php?categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
                         }
                         ?>
                     </div>
@@ -62,7 +62,7 @@ $categories = $listecat->fetchAll();
                     <div class="dropdown-child">
                     <?php
                         foreach($categories as $categorie){
-                            echo '<a href="articles.php?id_categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
+                            echo '<a href="articles.php?categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
                         }
                         ?>
                     </div>
@@ -90,7 +90,7 @@ $categories = $listecat->fetchAll();
                     <div class="dropdown-child">
                         <?php
                             foreach($categories as $categorie){
-                                echo '<a href="articles.php?id_categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
+                                echo '<a href="articles.php?categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
                             }
                         ?>
                     </div>
