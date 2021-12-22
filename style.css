@@ -263,5 +263,10 @@ font-size: 200%;
 }
 .al_href:hover { color: rgb(111, 93, 230)
 }
+#al_boutonart{
+    justify-content: center;
+    display: flex;
+    padding-top: 5%;
+}
 
                                                     /* CREER ARTICLES  */
