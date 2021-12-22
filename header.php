@@ -16,8 +16,8 @@ $categories = $listecat->fetchAll();
     ?>
     <nav class="lr_nav_header">
     <div id="lr_logo">
-            <img src="../blog/medias/logo_blog.png">
-        </div> 
+        <img src="../blog/medias/logo_blog.png">
+    </div> 
         <ul class="lr_ul_header">
             <?php 
             if($_SESSION['id_droits'] == 1){
@@ -86,15 +86,15 @@ $categories = $listecat->fetchAll();
         <ul class="lr_ul_header">
             <li ><a class="lr_li_header" href="index.php"> Accueil</a></li>
             <div class="dropdown">
-                    <nav class="boutonmenuprincipal">Catégories</nav>
+                <nav class="boutonmenuprincipal">Catégories</nav>
                     <div class="dropdown-child">
-                    <?php
-                        foreach($categories as $categorie){
-                            echo '<a href="articles.php?id_categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
-                        }
+                        <?php
+                            foreach($categories as $categorie){
+                                echo '<a href="articles.php?id_categorie='.$categorie['id'].'">'.$categorie['nom'].'</a>';
+                            }
                         ?>
                     </div>
-                </div>
+            </div>
             <li ><a class="lr_li_header" href="inscription.php"> Inscription</a></li>
             <li ><a class="lr_li_header" href="connexion.php"> Connexion</a></li> 
         </ul>

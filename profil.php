@@ -81,8 +81,6 @@ if (isset($_SESSION['id']) && $_SESSION['id'] > 0) {
     <footer>
         <?php
         require('footer.php');
-        ?>
-        <?php 
             } else{
         echo "Eh vous n'êtes pas censé être là !";  ?>
         <a href="../blog/index.php">Par ici</a>

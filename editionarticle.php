@@ -12,13 +12,11 @@ $utilisateurs = $bdd->query('SELECT utilisateurs.`id` as idu, `login`, `password
 $listedroits = $bdd->query('SELECT * FROM droits');
 $lis = $listedroits->fetchAll();
 
-
 // ID nécessaire pour la connexion 
 if (!isset($_SESSION['id']) || $_SESSION['id_droits'] != 1337) {
     header("Location: profil.php");
     exit();
 }
-
 // Fonction supprimé une catégorie
 if (isset($_GET['supprimercateg']) && !empty($_GET['supprimercateg'])) {
     $supprimercateg = (int) $_GET['supprimercateg'];
@@ -27,20 +25,15 @@ if (isset($_GET['supprimercateg']) && !empty($_GET['supprimercateg'])) {
     header("Location: editionarticle.php");
     exit();
 }
-
-
-
 // Fonction ajouter une catégorie 
 if (isset($_POST['creercateg']) && !empty($_POST['creercateg'])) {
     $creercateg = htmlspecialchars($_POST['creercateg']);
     $requetecategor = $bdd->prepare("SELECT * FROM categories WHERE nom = ?"); // SAVOIR SI LE MEME LOGIN EST PRIS
     $requetecategor->execute(array($creercateg));
     $categexist = $requetecategor->rowCount(); // rowCount = Si une ligne existe = PAS BON
-
     if ($categexist !== 0) {
         $_SESSION['msg'] = $_SESSION['msg'] . "la catégorie existe déjà <br>";
     } else {
-
         $creercategorie = htmlspecialchars($_POST['creercateg']);
         $insertcateg = $bdd->prepare("INSERT INTO categories (nom) VALUES (?)");
         $insertcateg->execute(array($creercategorie));
@@ -48,7 +41,6 @@ if (isset($_POST['creercateg']) && !empty($_POST['creercateg'])) {
         exit();
     }
 }
-
 // Fonction modifié la catégorie
 if (isset($_POST['newcateg']) && !empty($_POST['newcateg'])) {
     $idchange = $_POST['idc'];
@@ -56,11 +48,9 @@ if (isset($_POST['newcateg']) && !empty($_POST['newcateg'])) {
     $requetecateg = $bdd->prepare("SELECT * FROM categories WHERE nom = ?"); // SAVOIR SI LE MEME LOGIN EST PRIS
     $requetecateg->execute(array($newcateg));
     $categexist = $requetecateg->rowCount(); // rowCount = Si une ligne existe = PAS BON
-
     if ($categexist !== 0) {
         $_SESSION['msg'] = $_SESSION['msg'] . "la catégorie existe déjà <br>";
     } else {
-
         $newcategorie = htmlspecialchars($_POST['newcateg']);
         $insertcateg = $bdd->prepare("UPDATE categories SET nom = ? WHERE id = ?");
         $insertcateg->execute(array($newcategorie, $idchange));
@@ -68,8 +58,6 @@ if (isset($_POST['newcateg']) && !empty($_POST['newcateg'])) {
         exit();
     }
 }
-
-
 // Fonction modifié le titre
 if (isset($_POST['modiftitre']) && !empty($_POST['modiftitre'])) {
     $idchange = $_POST['ida'];
@@ -78,11 +66,9 @@ if (isset($_POST['modiftitre']) && !empty($_POST['modiftitre'])) {
     $requetetitre->execute(array($modificationtitre));
     $titreexist = $requetetitre->rowCount(); // rowCount = Si une ligne existe = PAS BON
     var_dump($msg);
-
     if ($titreexist !== 0) {
         $_SESSION['msg'] = $_SESSION['msg'] . "Le titre éxiste déjà ! <br>";
     } else {
-
         $newtitre = htmlspecialchars($_POST['modiftitre']);
         $insertnewtitre = $bdd->prepare("UPDATE articles SET titre = ? WHERE id = ?");
         $insertnewtitre->execute(array($newtitre, $idchange));
@@ -90,10 +76,6 @@ if (isset($_POST['modiftitre']) && !empty($_POST['modiftitre'])) {
         exit();
     }
 }
-
-
-
-
 // Fonction modifié l'article
 if (isset($_POST['modifarticle']) && !empty($_POST['modifarticle'])) {
     $idchange = $_POST['ida'];
@@ -102,11 +84,9 @@ if (isset($_POST['modifarticle']) && !empty($_POST['modifarticle'])) {
     $requetearct->execute(array($modificationarticle));
     $articleexist = $requetearct->rowCount(); // rowCount = Si une ligne existe = PAS BON
     var_dump($msg);
-
     if ($articleexist !== 0) {
         $_SESSION['msg'] = $_SESSION['msg'] . "Il n'y as pas eu de modifications sur l'article <br>";
     } else {
-
         $newarticle = htmlspecialchars($_POST['modifarticle']);
         $insertnewarticle = $bdd->prepare("UPDATE articles SET article = ? WHERE id = ?");
         $insertnewarticle->execute(array($newarticle, $idchange));
@@ -114,12 +94,8 @@ if (isset($_POST['modifarticle']) && !empty($_POST['modifarticle'])) {
         exit();
     }
 }
-
-
 // Fonction modifié la catégorie d'un article
 if (isset($_POST['selectc'])) {
-
-
     $idchange = $_POST['ida'];
     $categoriechange = $_POST['selectc'];
     $changercateg = $bdd->prepare("UPDATE articles SET id_categorie = ? WHERE id = ?");
@@ -127,7 +103,6 @@ if (isset($_POST['selectc'])) {
     header('Location: admin.php');
     exit();
 }
-
 // Fonction supprimé un article
 if (isset($_GET['supprimerarticle']) && !empty($_GET['supprimerarticle'])) {
     $supprimerarticle = (int) $_GET['supprimerarticle'];
@@ -137,7 +112,6 @@ if (isset($_GET['supprimerarticle']) && !empty($_GET['supprimerarticle'])) {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,7 +122,7 @@ if (isset($_GET['supprimerarticle']) && !empty($_GET['supprimerarticle'])) {
 
 <body id="al_body">
     <header>
-      <?php
+        <?php
             include_once("header.php");
         ?>
     </header>
@@ -199,7 +173,6 @@ if (isset($_GET['supprimerarticle']) && !empty($_GET['supprimerarticle'])) {
                                 <?php foreach ($fetchcate as $key => $value) { ?>
                                     <option <?= $a['id_categorie'] == $value['idc'] ? "selected" : NULL ?> value="<?= $value['idc'] ?>"><?= $value['nom'] ?></option>
                                 <?php
-
                                 } ?>
                             </select>
                         </td>
@@ -208,19 +181,14 @@ if (isset($_GET['supprimerarticle']) && !empty($_GET['supprimerarticle'])) {
                     </form>
                 </tr>
             <?php } ?>
-
         </table>
-        <br>
-
-        <br>
+        <br><br>
         <?php
-
         if (isset($_SESSION['msg'])) {
             echo '<font color="red">' . $_SESSION['msg'] . '</font><br /><br />';
             $_SESSION['msg'] = "";
         }
         ?>
-        
     </main>
     <footer>
         <?php

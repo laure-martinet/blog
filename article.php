@@ -63,7 +63,6 @@ if (isset($_GET['id']) and !empty($_GET['id'])) {
 ?>
     <!DOCTYPE html>
     <html>
-
     <head>
         <title>Article</title>
         <link rel="stylesheet" href="style.css" />
@@ -81,8 +80,8 @@ if (isset($_GET['id']) and !empty($_GET['id'])) {
             <div id="deplacement_article">
                 <div id="lr_article">
                     <p class="lr_text">Catégorie : <?php
-                                                    echo $msg_cat;
-                                                    ?></p>
+                        echo $msg_cat;
+                        ?></p>
                     <p class="lr_text">Créée le <?php echo $article['date']; ?></p>
                     <h1 id="lr_titre_article"><?= $titre ?></h1>
                     <p class="lr_h2"><?= $contenu ?></p>
@@ -95,7 +94,7 @@ if (isset($_GET['id']) and !empty($_GET['id'])) {
                                 <input type="submit" class="btn btn-secondary btn-lg" value="Poster mon commentaire" name="submit_commentaire" href="redirect" />
                             </form>
                         <?php } else {
-                            echo "<p class='lr_error'>Vous devez être connecté pour poster !<br><a class='lr_error' href='connexion.php'>Connectez-vous ici</a></p>";
+                            echo "<p class='lr_error'>Vous devez être connecté pour poster un commentaire !<br><a class='lr_error' href='connexion.php'>Connectez-vous ici</a></p>";
                         }
                         ?>
                         <!-- Message d'erreurs -->
@@ -125,9 +124,8 @@ if (isset($_GET['id']) and !empty($_GET['id'])) {
         <footer>
             <?php
             include_once("footer.php");
+}
             ?>
         </footer>
     </body>
-
     </html>
-<?php } ?>

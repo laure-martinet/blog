@@ -51,7 +51,6 @@ if (isset($_POST['newmail']) && !empty($_POST['newmail'])) {
    if ($emailexist !== 0) {
       $msg = "L'email existe déjà !";
    } else {
-
       $newmail = htmlspecialchars($_POST['newmail']);
       $insertlogin = $bdd->prepare("UPDATE utilisateurs SET email = ? WHERE id = ?");
       $insertlogin->execute(array($newmail, $idchange));
@@ -133,6 +132,7 @@ if (isset($_POST['select'])) {
       <a href="editionarticle.php"><input class="btn btn-secondary btn-lg" type="button" value="Modifier article"></a>
       </div>
    </main>
+
    <footer>
       <?php
       include_once('footer.php');
