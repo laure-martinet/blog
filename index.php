@@ -49,7 +49,6 @@ $depart = ($pageCourante - 1) * $article_par_page;
         <?php
         }
         ?>
-        <!-- <div class="rectangle"></div> -->
     </main>
     <footer>
         <?php
