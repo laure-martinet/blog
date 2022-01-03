@@ -1,7 +1,6 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
-$lacateg= $_GET['categorie'];
 
 if (isset($_GET['page'])&& !empty($_GET['page'])){
     $pageCourante=(int)strip_tags($_GET['page']);
@@ -9,7 +8,8 @@ if (isset($_GET['page'])&& !empty($_GET['page'])){
     $pageCourante=1;
 }
 
-$sql= 'SELECT COUNT(*) AS nb_articles FROM `articles`;';
+$sql= 'SELECT COUNT(*) AS nb_articles FROM `articles`';
+$lacateg= $_GET['categorie'];
 $query=$bdd->prepare($sql);
 $query->execute();
 $result=$query->fetch();
@@ -47,34 +47,42 @@ $articles=$query->fetchAll(PDO::FETCH_ASSOC);
         ?>
     </header>
     <main id=al_articles>
-        <?php
+        <?php       
+
             foreach ($articles as $article){
         ?>
         <div id=al_article>
         <a class="al_href" href="article.php?id=<?= $article['art_id']?>"><?= $article['titre']?> </a><br>
         <div id="al_date"><?= $article['date']?></div></div><br>
-        
         <?php
-        }
+        } 
+            // var_dump($articles);      
+            // if(isset($lacateg)>1){
+                // if isset($_GET['page]){
+
         ?>
         <nav id= al_boutonart >
             <ul class="pagination">
                 <li class="btn btn-secondary btn-lg <?=($pageCourante == 1) ? "disabled" :"" ?>">
-                    <a href="articles.php?categorie=<?= $article['id_categorie']?>&page=<?= $pageCourante-1 ?>" class="btn btn-secondary btn-lg">Précédente</a>
+                    <a href="articles.php?page=<?= $pageCourante-1 ?>&categorie=<?= $lacateg?>" class="btn btn-secondary btn-lg">Précédente</a>
                 </li> &emsp;
-                <?php for($page = 1; $page <= $pagestotales; $page++): ?>
-                            <li class="btn btn-secondary btn-lg <?= ($currentPage == $page) ? "active" : "" ?>">
-                                <a href="articles.php?categorie=<?= $article['id_categorie']?>&page=<?= $page ?>"class="btn btn-secondary btn-lg"><?= $page ?></a>
+                <?php
+                for($page = 1; $page <= $pagestotales; $page++): ?>
+                            <li class="btn btn-secondary btn-lg <?= ($pageCourante == $pages) ? "active" : "" ?>">
+                                <a href="articles.php?page=<?=$page?>&categorie=<?=$lacateg?>"class="btn btn-secondary btn-lg"><?= $page ?></a>
                             </li>
-                        <?php endfor ?>&emsp;
+                <?php endfor ?>&emsp;
                 <li class="btn btn-secondary btn-lg <?=($pageCourante==$pagestotales) ? "disabled" :"" ?>">
-                    <a href="articles.php?categorie=<?= $article['id_categorie']?>&page=<?= $pageCourante+1 ?>" class="btn btn-secondary btn-lg">Suivante</a>
+                    <a href="articles.php?page=<?= $pageCourante+1 ?>&categorie=<?= $lacateg?>" class="btn btn-secondary btn-lg">Suivante</a>
                 </li>
             </ul>
         </nav>
+<?php
+//  } }
+?>
     </main>
     <footer>
-        <?php
+        <?php 
         require('footer.php')
         ?>
     </footer>
