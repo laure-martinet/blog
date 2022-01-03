@@ -1,5 +1,5 @@
 <?php 
-$bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+include('bdd.php');
 $listecat = $bdd->query('SELECT * FROM categories');
 $categories = $listecat->fetchAll();
 ?>

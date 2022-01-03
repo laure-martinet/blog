@@ -1,6 +1,5 @@
 <?php
-session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
+include('bdd.php');
 
 if(isset($_GET['id']) AND !empty($_GET['id'])){
 $getid = $_GET['id'];

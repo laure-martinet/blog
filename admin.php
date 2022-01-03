@@ -1,6 +1,5 @@
 <?php
-session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+include('bdd.php');
 
 $utilisateurs = $bdd->query('SELECT utilisateurs.`id` as idutilisateur, `login`, `password`, `email`, `id_droits`,`nom` FROM `utilisateurs` INNER JOIN droits ON droits.id = utilisateurs.id_droits ORDER BY utilisateurs.id ASC;');
 $listedroits = $bdd->query('SELECT * FROM droits');

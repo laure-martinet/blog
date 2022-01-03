@@ -1,5 +1,5 @@
 <?php
-$bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', ''); 
+include('bdd.php');
 if (isset($_POST['submit'])){
             $erreur = "";  
             $login = htmlspecialchars($_POST['login']);

@@ -1,6 +1,5 @@
 <?php
-$bdd = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
-session_start();
+include('bdd.php');
 
 if (isset($_SESSION['login']) != 1337 || isset($_SESSION['login']) != 42) // ID a changer a modérateur et admin
 {

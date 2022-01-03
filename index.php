@@ -1,6 +1,5 @@
 <?php
-session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+include('bdd.php');
 $bdd->query('SELECT * FROM articles ORDER BY date DESC LIMIT 0,5');
 
 $article_par_page = 3;
