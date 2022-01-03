@@ -56,10 +56,6 @@ $articles=$query->fetchAll(PDO::FETCH_ASSOC);
         <div id="al_date"><?= $article['date']?></div></div><br>
         <?php
         } 
-            // var_dump($articles);      
-            // if(isset($lacateg)>1){
-                // if isset($_GET['page]){
-
         ?>
         <nav id= al_boutonart >
             <ul class="pagination">
