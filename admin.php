@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('bdd.php');
 
 $utilisateurs = $bdd->query('SELECT utilisateurs.`id` as idutilisateur, `login`, `password`, `email`, `id_droits`,`nom` FROM `utilisateurs` INNER JOIN droits ON droits.id = utilisateurs.id_droits ORDER BY utilisateurs.id ASC;');

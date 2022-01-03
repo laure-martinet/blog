@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('bdd.php');
 //ARTICLE (Afficher l'article)
 if (isset($_GET['id']) and !empty($_GET['id'])) {

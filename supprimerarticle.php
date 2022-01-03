@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('bdd.php');
 
 if(isset($_GET['id']) AND !empty($_GET['id'])){

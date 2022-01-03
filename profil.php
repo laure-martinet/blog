@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('bdd.php');
 if (isset($_SESSION['id']) && $_SESSION['id'] > 0) {
     $requtilisateur = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');

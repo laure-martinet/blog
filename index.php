@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('bdd.php');
 $bdd->query('SELECT * FROM articles ORDER BY date DESC LIMIT 0,5');
 
