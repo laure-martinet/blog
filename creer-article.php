@@ -1,6 +1,5 @@
 <?php
-session_start();
-include('bdd.php');
+include('bdd.php');session_start();
 
 if (isset($_SESSION['login']) != 1337 || isset($_SESSION['login']) != 42) // ID a changer a modérateur et admin
 {

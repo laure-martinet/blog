@@ -1,7 +1,6 @@
 <?php
 session_start();
-include('bdd.php');
-//ARTICLE (Afficher l'article)
+include('bdd.php');//ARTICLE (Afficher l'article)
 if (isset($_GET['id']) and !empty($_GET['id'])) {
     $get_id = htmlspecialchars($_GET['id']);
     $article = $bdd->prepare('SELECT * FROM articles WHERE id = ?');

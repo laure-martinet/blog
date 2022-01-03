@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('bdd.php');
-
 if (isset($_GET['page'])&& !empty($_GET['page'])){
     $pageCourante=(int)strip_tags($_GET['page']);
 }else{

@@ -1,7 +1,7 @@
 <?php
 session_start();
-include('bdd.php');
 
+include('bdd.php');
 if(isset($_POST['formconnexion']))
 {
     $loginconnect = htmlspecialchars($_POST['loginconnect']);

@@ -69,8 +69,8 @@ if (isset($_SESSION['id']) && $_SESSION['id'] > 0) {
                 }
                 ?>
                 <h2 class="lr_h2">Modifier mes informations</h1><br>
-                    <input type="text" class="box-input" name="newlogin" placeholder="Login" <?php echo 'value="'.$infoutilisateur['login'].'"'?>required /><br>
-                    <input type="text" class="box-input" name="newemail" placeholder="email" <?php echo 'value="'.$infoutilisateur['email'].'"'?>required /><br>
+                    <input type="text" class="box-input" name="newlogin" placeholder="Login" required /><br>
+                    <input type="text" class="box-input" name="newemail" placeholder="email" required /><br>
                     <input type="password" class="box-input" name="newmdp" placeholder="Mot de passe" required /><br>
                     <input type="password" class="box-input" name="newmdp2" placeholder="Confirmez votre mot de passe" required /><br><br>
                     <input type="submit" name="submit" value="Enregistrer mes informations" class="btn btn-secondary btn-lg" /><br><br>

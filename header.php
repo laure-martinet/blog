@@ -1,6 +1,5 @@
 <?php 
-include('bdd.php');
-$listecat = $bdd->query('SELECT * FROM categories');
+include('bdd.php');$listecat = $bdd->query('SELECT * FROM categories');
 $categories = $listecat->fetchAll();
 ?>
 <html> 
