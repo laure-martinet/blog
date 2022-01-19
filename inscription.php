@@ -26,6 +26,7 @@ if (isset($_POST['submit'])){
                 $insertmbr= $bdd->prepare("INSERT INTO  utilisateurs (login, email, password, id_droits) VALUES(?, ?, ?, ?)");
                 $insertmbr->execute(array($login, $email, $hashage, $id_droits));
                 $erreur = "Votre compte à bien été créer !";
+                header('location: connexion.php');
             }
         }
             else{

@@ -7,13 +7,23 @@
     </head>
 <footer>
     <div id="footerbox">
-            <a class="btn btn-secondary btn-lg" href="index.php"> Accueil</a>
-            <a class="btn btn-secondary btn-lg" href="inscription.php"> Inscription</a>
-            <a class="btn btn-secondary btn-lg" href="connexion.php"> Connexion</a>
-            <a class="btn btn-secondary btn-lg" href="profil.php"> Profil</a>
-            <a class="btn btn-secondary btn-lg" href="articles.php?categorie=1&page=1"> Ensembles articles</a>
-            <a class="btn btn-secondary btn-lg" href="creer-article.php"> Créer un article</a>
-            <a class="btn btn-secondary btn-lg" href="article.php?id=1"> Voir articles et comms</a>
+    <a class="btn btn-secondary btn-lg" href="index.php"> Accueil</a>  
+    <?php if (empty($_SESSION['utilisateur'])) 
+    {
+        echo
+        "
+        <a class='btn btn-secondary btn-lg' href='profil.php'> Profil</a>
+        <a class='btn btn-secondary btn-lg' href='articles.php?categorie=1&page=1'>Ensembles articles</a>
+        <a class='btn btn-secondary btn-lg' href='deconnexion.php'>Decconexion</a>
+        ";
+    }
+if (isset($_SESSION['id_droits'])) {
+    if ($_SESSION['id_droits']==42 || $_SESSION['id_droits']==1337) {
+        echo"<a class='btn btn-secondary btn-lg' href='creer-article.php'>Créer un article</a>";
+        echo"<a class='btn btn-secondary btn-lg' href='admin.php'>Administration</a>";   
+    }
+}
+?>
             <a href="https://github.com/laure-martinet/blog.git"><img src="medias/unnamed-removebg-preview.png" height="60px" width="60px"></a>
         </div>
     </div>
